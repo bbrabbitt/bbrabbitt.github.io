@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="Amatsukazedaze">
+  <meta name="keywords" content="">
+  <title>pytorch&amp;caffe2 深度学习的魔法 安装pytorch ~ hanayuki</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>hanayuki</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/hanayuki.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期一, 十一月 18日 2019, 12:30 下午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.7k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      6 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <p>“工欲善其事，必先利其器”。在正式接触神经网络的种种用法前，首先要安装好pytorch和相关的运行环境。本系列中用到的语言均为python，并使用pytorch和caffe2的python API实作。可能有一些读者阅读本系列前系统中已经安装了一个或多个python环境，但是通常使用的python环境缺少一些科学计算所必须的运行库。为了省却自己安装库的麻烦，在这里我们使用anaconda或miniconda安装pytorch。</p>
+<h1 id="安装anacondaminiconda"><a class="markdownIt-Anchor" href="#安装anacondaminiconda"></a> 安装anaconda/miniconda</h1>
+<p>anadconda是一个专门为科学计算设计的python发行版，它自带180余个常用科学软件包的一个名叫conda的环境管理器。conda能够安装绝大部分python科学计算包，同时也具有管理python环境的功能。为了不让pytorch的一些包和日常开发用的其他模块包，我们最好使用conda新建一个干净的python环境并在里面安装pytorch。</p>
+<p>由于anaconda自带的很多包我们实际用不上，而且全部安装比较占用空间（大约有450MB），因此anaconda提供了另一个精简化的选择：miniconda。miniconda只包含了一个python运行时和一个conda管理器，占用的空间较小，同时也可以更灵活的配置需要的包，miniconda与anaconda安装方式相同，因此在下文中我会介绍miniconda安装方法，并附上anaconda下载地址。</p>
+<h2 id="在windows上安装miniconda"><a class="markdownIt-Anchor" href="#在windows上安装miniconda"></a> 在Windows上安装miniconda</h2>
+<p>1.在 <a href="https://docs.conda.io/en/latest/miniconda.html" target="_blank" rel="noopener">https://docs.conda.io/en/latest/miniconda.html</a> 处下载Windows版本的miniconda，如无特殊理由请选择Python3.7版，并根据自己的系统选择32位或64位。</p>
+<p>2.双击安装包，打开界面如下所示</p>
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/windows-step2.png" srcset="undefined" class="">
+<p>3.点击下一步，保持默认安装选项不变，选择安装路径（推荐安装在C盘）</p>
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/windows-step3.png" srcset="undefined" class="">
+<p>4.高级选项中第一个选项是将miniconda加入环境变量，加入后可以直接从cmd或powershell使用miniconda命令。如果曾经没有安装过其他版本的python可以选择该选项，否则可能会扰乱其他依赖python的程序的正常运行。官方推荐不勾选该选项而是从开始菜单运行miniconda。第二个选项是将miniconda附带的python3.7注册为系统默认python3.7版本，勾选后IDE可以自动检测到miniconda，否则需要自己配置miniconda的运行路径。在此我们保持默认配置：第一个不勾选，第二个勾选。</p>
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/windows-step4.png" srcset="undefined" class="">
+<p>5.安装程序会自动进行安装，最后弹出安装完成界面。然后从开始菜单中选择自己喜欢的终端程序（cmd或powershell）就可以开始使用了。</p>
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/windows-step5.png" srcset="undefined" class="">
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/miniconda.png" srcset="undefined" class="">
+<h2 id="在macos上安装miniconda"><a class="markdownIt-Anchor" href="#在macos上安装miniconda"></a> 在MacOS上安装miniconda</h2>
+<p>1.在 <a href="https://docs.conda.io/en/latest/miniconda.html" target="_blank" rel="noopener">https://docs.conda.io/en/latest/miniconda.html</a> 处下载MacOS版本的miniconda，如无特殊理由请选择Python3.7版，注意选择pkg版以使用图形安装器（名字为Miniconda3 MacOSX 64-bit pkg）。</p>
+<p>2.按住option打开安装包（sierra以上）或直接打开（sierra以下），进入图形安装界面。</p>
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/mac-step2.png" srcset="undefined" class="">
+<p>3.保持默认配置并安装，其中可能会要求某些文件夹权限，请注意确认。</p>
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/mac-step3.png" srcset="undefined" class="">
+<p>4.等待弹出安装完成界面，此时打开终端即可使用conda命令。</p>
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/mac-step4.png" srcset="undefined" class="">
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/mac-miniconda.png" srcset="undefined" class="">
+<h2 id="在linux上安装miniconda"><a class="markdownIt-Anchor" href="#在linux上安装miniconda"></a> 在Linux上安装miniconda</h2>
+<p>1.在 <a href="https://docs.conda.io/en/latest/miniconda.html" target="_blank" rel="noopener">https://docs.conda.io/en/latest/miniconda.html</a> 处下载Linux版本的miniconda，如无特殊理由请选择Python3.8版，并根据自己的系统选择32位或64位（此处使用WSL ubuntu演示）。</p>
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/linux-step1.png" srcset="undefined" class="">
+<p>2.使用<code>chmod +x Miniconda3-latest-Linux-x86_64.sh</code>添加执行权限，然后<code>./Miniconda3-latest-Linux-x86_64.sh</code>运行安装脚本。</p>
+<p>3.按屏幕提示按回车键，然后打yes同意协议，最后按回车安装，或按需要更改安装目录后安装。</p>
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/linux-eula.png" srcset="undefined" class="">
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/linux-install.png" srcset="undefined" class="">
+<p>4.安装结束后会询问是否运行conda init。conda init是用于在当前shell中初始化conda环境的命令。运行该命令可以更方便的使用miniconda。</p>
+<p>5.重启当前shell，如果运行了conda init在提示符最前端应该有(base)字样，如果没有运行conda init需要使用eval “$(/root/miniconda3/bin/conda shell.YOUR_SHELL_NAME hook)”（此处YOUR_SHELL_NAME改为当前shell的名称，如bash,zsh,fish等）命令启动conda。</p>
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/linux-finish.png" srcset="undefined" class="">
+<p>以上为在不同系统中安装miniconda的方法。安装完整的anaconda流程一致，只需在<a href="https://www.anaconda.com/distribution/" target="_blank" rel="noopener">https://www.anaconda.com/distribution/</a>下载安装包即可。注意选择和自己系统对应的版本。</p>
+<h1 id="使用conda安装pytorch"><a class="markdownIt-Anchor" href="#使用conda安装pytorch"></a> 使用conda安装pytorch</h1>
+<p>在安装好miniconda后安装pytorch就很简单了。首先为了防止干扰到其他python环境，我们使用<code>conda create --name pytorch</code>创建一个干净的python环境安装pytorch，然后运行<code>conda activate pytorch</code>进入这个新的环境。运行后前面括号里的base变成了pytorch。</p>
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/env-change.png" srcset="undefined" class="">
+<p>接下来直接运行<code>conda install pytorch</code>conda就会自动安装pytorch和所有依赖。安装结束后，运行python，尝试<code>import torch</code>，如果能正常执行那说明就安装成功了。</p>
+<h1 id="编译安装pytorch"><a class="markdownIt-Anchor" href="#编译安装pytorch"></a> 编译安装pytorch</h1>
+<p>由于caffe2的API在pytorch1.0发布后已经停止支持，并且caffe2与pytorch已经合成了一个包，所以caffe2的一些库不再包含在conda的pytorch包里。为了正常使用caffe2我们需要自行编译pytorch。编译过程同样需要在conda环境中进行。具体编译过程由于不同系统差异较大，请查看<a href="https://github.com/pytorch/pytorch" target="_blank" rel="noopener">https://github.com/pytorch/pytorch</a>的官方指南，在编译时需要额外设置<code>USE_LMDB</code>和<code>USE_LEVELDB</code>两个环境变量为ON以安装caffe2必须的数据库读取库，设置<code>USE_OPENCV</code>安装OPENCV支持（OPENCV需要额外安装），另外还要设置<code>BUILD_BINARY</code>编译一些常用工具。安装完成后再运行<code>conda install future protobuf six pyyaml pydot</code>安装caffe2依赖的额外包才能使用。全部安装完成后启动python并尝试运行<code>from caffe2.python import core</code>，如果没有报错则安装成功。</p>
+<h1 id="安装jupyter"><a class="markdownIt-Anchor" href="#安装jupyter"></a> 安装jupyter</h1>
+<p>在结束前，我们还需要安装jupyter。jupyter是一个强大的python记事本，可以在浏览器中方便地调试python代码，查看图表，甚至播放声音和视频。jupyter也是conda支持的软件包之一，所以只需要运行<code>conda install jupyter</code>即可安装。</p>
+<p>安装结束后，输入<code>jupyter notebook</code>命令就会运行一个jupyter服务器，并自动打开本地的浏览器，界面如下。默认打开文件浏览器会显示运行jupyter的目录的所有文件。</p>
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/jupyter-index.png" srcset="undefined" class="">
+<p>点击右上角的new，新建一个python3记事本，然后尝试导入pytorch和caffe2。注意一个单元中可以输入多行代码，最后按shift+回车执行整个单元。</p>
+<img src="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/jupyter-notebook.png" srcset="undefined" class="">
+<p>到此为止，pytorch和caffe2已经可以正常使用了，下一节将会讲述神经网络的基础数学知识，这对构建一个成功的神经网络至关重要。</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">神经网络</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/pytorch">pytorch</a>
+                
+                  <a class="hover-with-bg" href="/tags/caffe2">caffe2</a>
+                
+                  <a class="hover-with-bg" href="/tags/%E5%9F%BA%E7%A1%80">基础</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <div id="vcomments" style="width: 90%; margin: 0 auto;"></div>
+  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script>
+    var notify = 'false' === true;
+    var verify = 'true' === true;
+    var oldLoad = window.onload;
+    window.onload = function () {
+      new Valine({
+        el: '#vcomments',
+        notify: notify,
+        verify: verify,
+        app_id: "jY5stlz5eNHmsmr1p2wsi53q-MdYXbMMI",
+        app_key: "R0kCXXt8GsmjHF9Nug1fSRWp",
+        placeholder: "说点什么",
+        avatar: "retro",
+        meta: ['nick', 'mail', 'link'],
+        pageSize: "10",
+      });
+      oldLoad && oldLoad();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "pytorch&caffe2 深度学习的魔法 安装pytorch&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="/lib/katex/katex.min.css"  >
+  
+
+
+
+
+
+</body>
+</html>

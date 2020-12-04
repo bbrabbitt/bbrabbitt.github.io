@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="Amatsukazedaze">
+  <meta name="keywords" content="">
+  <title>pytorch&amp;caffe2 深度学习的魔法 手写数字识别网络 ~ hanayuki</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>hanayuki</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/hanayuki.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期日, 十一月 24日 2019, 11:34 中午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    5k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      19 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <p>本节我们将构建第一个有实际用处的网络：手写数字识别网络。这个网络使用了非常经典的MNIST数据集(Modified National Institute of Standards and Technology 经修改的美国国家标准与技术研究所数据集)进行训练（<a href="https://www.nist.gov/system/files/documents/srd/nistsd19.pdf" target="_blank" rel="noopener">原始数据集</a>介绍在此文件中描述，MNIST包含的是Special Database 1和Special Database 3，Special Database 1中包含的是高中生的手写数字，Special Database 3中包含的是美国人口调查局职员的手写数字）。这个数据集中包含了60000个尺寸为28*28的手写数字，由于它尺寸统一且适中，并且手写数字大部分都特征明显，因此很适合作为神经网络的第一个例子展示。</p>
+<h1 id="神经网络数据集"><a class="markdownIt-Anchor" href="#神经网络数据集"></a> 神经网络数据集</h1>
+<p>在上一个例子中我们使用线性函数自己生成了数据集，但大部分情况下数据集准备并没有这么简单，通常需要耗费大量时间和人力为数据添加标签然后给神经网络训练。好在现在有很多开源数据集供我们使用，因此在学习时我们通常可以忽略这一步，但如果要实际训练一个自己的网络，这通常是最困难的一步之一。</p>
+<p>不论是使用别人预先准备好的数据集还是自己收集的数据集，我们都有必要在让神经网络学习前先查看数据集的内容与结构，并在必要时对数据进行一些预处理。一个好的数据集对于神经网络的训练效果至关重要，想象一下如果你在学英语时书上告诉你cat的意思是狗，那么你再聪明也无法领会到cat的真正意思是猫。当然，作为一个久经考验的数据集，MNIST不需要我们操心数据的正确性，但我们仍需要进行一些必要的预处理。</p>
+<p>从这一节开始，我们用到的数据集都分为训练集和测试集。在训练线性回归网络时我们并没有特意分出测试集，由于线性回归网络十分简单，我们可以直接检查参数检验训练成果。而识别MNIST的网络则要复杂得多，参数的意义也并不明确，因此我们需要专门准备一个测试集测试网络的训练成果。要注意测试集<strong>绝对不能</strong>在训练时使用，因为神经网络参数非常多，我们并不清楚训练时的优异表现是否是因为神经网络用这些参数“记忆”了训练集的每一个数字和标签的关系，还是真正的学习到了数字间形状的差异，因此测试集必须是一个独立的，神经网络从未见过的数据，这样我们才能准确地判断神经网络的表现。</p>
+<h1 id="使用pytorch构建网络"><a class="markdownIt-Anchor" href="#使用pytorch构建网络"></a> 使用pytorch构建网络</h1>
+<h2 id="下载mnist数据集"><a class="markdownIt-Anchor" href="#下载mnist数据集"></a> 下载MNIST数据集</h2>
+<p>由于MNIST数据集十分常用，pytorch专门为它构建了一个工具类完成下载和导入过程，我们只需要调用这个类便可自动下载MNIST数据集。</p>
+<p>打开一个新的jupyter记事本，导入torch和torchvision的datasets两个包，torchvision是pytorch专门用于处理计算机视觉使用的包，即让计算机能够像人类一样“看懂”图片。datasets里有很多预置的常用数据集，我们可以使用dir看一看它包含的数据集。</p>
+
+<p>虽然我们这次要用到的是MNIST数据集，但查看datasets中包含的数据集会发现有很多数据集名字中包含MNIST：QMNIST，EMNIST，KMNIST和FashionMNIST。这几个数据集的共同之处是它们提供的图片都是28*28的位图，但其中包含的内容与MNIST有些不同。由于MNIST现在识别率非常高，很难看出不同的网络间有多大差距，因此人们使用同样的数据格式扩充了MNIST，有的包含更多的手写数字（QMNIST和EMNIST），而有的则直接换了图像的内容（FashionMNIST包含的是衣服图片和对应名称，而KMNIST是古日语文字和对应的假名分类）。这些数据集显著拉开不同网络结构的性能差异，因此我们后面的网络也会换用这些数据集体现差异。<br />
+首先我们先导入训练集和测试集。</p>
+<pre><code>from torchvision import transforms
+#datasets.MNIST(加载路径，是否使用训练集（设为False导入测试集），
+#文件不存在下载，数据集预处理函数）
+train_loader = torch.utils.data.DataLoader(
+    datasets.MNIST('./MNIST', train=True, download=True,transform=transforms.ToTensor()),
+    batch_size=50, shuffle=True)
+test_loader =  torch.utils.data.DataLoader(
+    datasets.MNIST('./MNIST', train=False, download=True,transform=transforms.ToTensor()),
+    batch_size=50, shuffle=True)
+</code></pre>
+<p>这里我们第一次遇到数据集预处理的概念。所谓预处理就是对数据集的内容进行一些必要的操作以让神经网络能够正确识别数据，进而提高神经网络的训练效率和性能。这里我们的操作非常简单，只是将原本的位图格式的图片转换为pytorch张量。torchvision提供的transforms有很多常用的预处理函数，我们在后面会经常遇到。</p>
+<p>将数据集导入Python之后，我们就可以查看这个数据集中的图片是什么样的了。由于DataLoader实现了*<strong>iter</strong>*方法，在这里我们使用python提供的iter和next函数获取train_loader的第一个小批量数据。</p>
+<pre><code>images, labels = next(iter(train_loader))
+images.size(),labels.size()
+</code></pre>
+<p>我们可以看到第一个小批量样本的大小是50，也就是我们设置的batch_size大小，后面的1,28,28则表示每张图尺寸是28*28，有一个通道<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>。而标签大小也为50，也就是每一张图都有一个标签。我们使用matplotlib来查看其中的10张图像和对应的标签。</p>
+<pre><code>import matplotlib.pyplot as plt
+%matplotlib inline
+figs,axs = plt.subplots(1,10, figsize=(20, 20)) #matplotlib的subplots可以让多张图片在同一行显示。这里的1,10表示生成的显示区域是1*10的
+for ax,i,label in zip(axs,range(0,10),labels):
+	ax.imshow(images[i].reshape(28,28),cmap=&quot;gray&quot;) #将图片转成28*28的张量
+	ax.set_title(label.item()) 
+	ax.axes.get_xaxis().set_visible(False)
+	ax.axes.get_yaxis().set_visible(False)
+</code></pre>
+<img src="/2019/11/24/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%E7%BD%91%E7%BB%9C/mnist_first10.png" srcset="undefined" class="">
+<p>由于开启了shuffle选项，每个人的读取结果都会不同，但是我们可以清楚的看到不同的数字对应不同的标签。作为人，我们自然能认识所有的数字，接下来我们就要让计算机学习不同数字的写法和对应的标签来认识这些数字。</p>
+<h2 id="softmax回归"><a class="markdownIt-Anchor" href="#softmax回归"></a> softmax回归</h2>
+<p>神经网络识别数字相当于将不同的数字图像分类到对应的数字下。由于不同的类别是一个离散的数值，像生成一个连续函数的线性回归就不太适用了。因此我们需要使用更加适合离散值分类的模型，例如softmax回归。softmax回归通过以e为底的指数函数（exp函数）将神经网络的输出正则化为一个合法的概率分布。由于exp的值域为(0,∞)，exp函数可以保证计算时所有的输出均为正数。它的公式非常简单，为</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>p</mi><mi>i</mi></msub><mo>=</mo><mfrac><mrow><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><mrow><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">p_i = \frac{exp(x_i)}{\sum_{j=1}^{n} exp(x_j)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.55711em;vertical-align:-1.1301100000000002em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.305708em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.43581800000000004em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1301100000000002em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>。softmax回归后所有类别的可能性就组成了一个概率分布，这样我们就能很方便的衡量神经网络的真实输出了。可以点击<a href="https://medium.com/data-science-bootcamp/understand-the-softmax-function-in-minutes-f3a59641e86d" target="_blank" rel="noopener">这里</a>查看关于softmax的详细解释。</p>
+<h2 id="构建网络"><a class="markdownIt-Anchor" href="#构建网络"></a> 构建网络</h2>
+<p>现在已经有很多高级的网络结构来辨识这些手写数字，但是我们还是从最简单的全连接网络开始构建。这种网络也被称为多层感知机，我们使用的多层感知机结构如下图所示。</p>
+<img src="/2019/11/24/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%E7%BD%91%E7%BB%9C/mnist_net.png" srcset="undefined" class="">
+<p>从图上可以看到每一个神经元之间都有连接，这也是为什么这种网络被称作全连接网络。正如上一节介绍，最左边一层是输入层， 最右边一层是输出层，而中间则是隐藏层。但稍加观察即可发现，这种网络只是在线性变换后将移动了张量，也就是进行了一次仿射变换，从更高维上看这只是一次的线性变换（这也是为什么有些框架将全连接层称为仿射层(Affine Layer)。）<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>仿射变换的叠加等价于一个仿射变换，因此不管有多少个隐藏层这个网络仍等价于一层。解决方法很简单，也就是在我们的网络中引入非线性函数，也被称作激活函数(Activation Function)。</p>
+<p>为隐藏层激活函数使隐藏层不单纯是进行仿射变换，也就不会有仿射变换叠加的问题。在神经网络中有四类常见的激活函数，分别为sigmoid函数，ReLU函数和tanh函数。而ReLU又有很多种不同的变种解决了这个函数存在的一些问题。下面我们来简单了解一下这三个函数</p>
+<h3 id="sigmoid函数"><a class="markdownIt-Anchor" href="#sigmoid函数"></a> sigmoid函数</h3>
+<p>sigmoid函数，或者叫logistic sigmoid函数是最古老的激活函数，值域为[0,1]，它的函数图像如下</p>
+<img src="/2019/11/24/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%E7%BD%91%E7%BB%9C/logistic_sigmoid.png" srcset="undefined" class="">
+<p>这个函数受神经科学启发，特点是对中央的信号反应大，而两端的信号反应小，与生物神经元较为相似。然而人工神经网络的工作方式和自然神经网络有很大不同，人工神经网络依赖梯度学习，而sigmoid函数的两端梯度很小甚至消失。这种情况也被称作激活函数软饱和，sigmoid因此是一个饱和激活函数，即这个函数在x趋向无穷时导数趋近于0。这种情况导致神经网络学习缓慢或者无法学习，因此人们便设计出了ReLU替代。</p>
+<h3 id="relu函数"><a class="markdownIt-Anchor" href="#relu函数"></a> ReLU函数</h3>
+<p>ReLU全称是修正线性单元(Rectified Linear Unit)，从名称可以得知它有一部分是线性函数，而它的非线性则体现在x&lt;0时函数值取0，当x&gt;0时函数值为x，如下图</p>
+<img src="/2019/11/24/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%E7%BD%91%E7%BB%9C/ReLU.png" srcset="undefined" class="">
+<p>这个函数构造简单，而且在正数部分趋向正无穷（永远不饱和），并且负数部分恒等于0（负数部分硬饱和），解决了梯度消失的问题，因此是现在大部分网络的首选激活函数。但忽略负数部分会导致ReLU有一定几率永远都不被激活，因此人们还提出了其他一些负数部分不硬饱和的函数使ReLU不会在负数部分因为饱和不能正常激活。</p>
+<h3 id="tanh函数"><a class="markdownIt-Anchor" href="#tanh函数"></a> tanh函数</h3>
+<p>tanh函数和sigmoid图像类似，但是值域为[-1,1]，它同样是一个饱和激活函数，图像如下</p>
+<img src="/2019/11/24/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%E7%BD%91%E7%BB%9C/tanh.png" srcset="undefined" class="">
+<p>sigmoid函数和tanh函数尽管由于饱和问题不常用到，但是它们能够限制值域的范围，因此在用于语音处理的循环神经网络和递归神经网络以及它们的变体中有很大用途。</p>
+<p>在加上激活函数后，我们的多层感知机就可以准备学习了，首先我们先构造一个简单的多层感知机。</p>
+<pre><code>from torch import nn
+net = nn.Sequential(
+	nn.Linear(28*28,256), #输入28*28=784个，即每个像素对应一个输入层的神经元，隐藏层输出256个
+	nn.ReLU(), #使用ReLU作为激活函数
+	nn.Linear(256,10) #输出层接受来自隐藏层的256个数据，输出神经元为10个，对应10个数字
+)
+</code></pre>
+<p>我们使用和线性回归网络一样的初始化函数初始化权重。</p>
+<pre><code>def init_weights(m):
+if type(m) == nn.Linear:
+	nn.init.normal_(m.weight)
+	m.bias.data.fill_(0.01)
+
+net.apply(init_weights)
+</code></pre>
+<p>在这个网络中，我们使用交叉熵损失函数。这个函数衡量一个事件的发生概率和对应的信息量。一个事件发生概率越小，信息量越大，而熵代表了对所有事件发生的信息量的期望值，熵期望值越大则代表结果越不确定。交叉熵则衡量了两个不同的概率分布间的差距有多大，如果交叉熵函数越小，则两个概率分布越接近。由于我们有一个真实概率分布（即已经加了标签的训练集数据），交叉熵函数只需要衡量训练后的softmax产生的概率分布和真实概率分布间差距就可以知道我们的训练效果。因此交叉熵函数在单分类问题，也就是一个输入只对应一个分类的问题中非常常用。pytorch的交叉熵函数还包含了softmax回归器，所以我们不需要在网络结构中自己加入softmax回归。而梯度下降算法则使用更加常用的Adam优化算法。</p>
+<pre><code>criterion = torch.nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(net.parameters(),lr=0.01)
+</code></pre>
+<p>接下来就可以开始训练了，简洁起见部分重复的注释将不再写在代码中</p>
+<pre><code>for epoch in range(5):
+	loss = 0
+	for _, data in enumerate(train_loader):
+		features, labels = data
+		#将图片变成一维的向量以便送入网络中
+		features = features.view(-1,28*28)
+		optimizer.zero_grad()
+		outputs = net(features)
+		loss = criterion(outputs,labels)
+		loss.backward()
+		optimizer.step()
+	
+	#每运行完一代就显示训练效果
+	print(&quot;epoch {}, loss {}&quot;.format(epoch+1,loss.data.item()))
+</code></pre>
+<img src="/2019/11/24/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%E7%BD%91%E7%BB%9C/result.png" srcset="undefined" class="">
+<p>可以看到得到的损失非常低，但损失只能体现模型在训练集上的效果，为了衡量这个网络能不能在未知的数据上正常识别数字，我们需要使用测试集。</p>
+<pre><code>correct = 0
+for features, labels in test_loader:
+	features = features.view(-1,28*28)
+	outputs = net(features)
+	#预测的结果output.data为一个行向量，包含网络对每个图像预测的可信度，数字越大表示网络认为这张图像越有可能是某个数字
+	#torch.max可以获取这个向量中最大值并返回对应的索引
+	_, predicted = torch.max(outputs.data,1)
+	correct += (predicted == labels).sum()
+
+print(&quot;accuracy {}%&quot;.format(100*(correct.item()/10000)))	
+</code></pre>
+<img src="/2019/11/24/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%E7%BD%91%E7%BB%9C/accuracy.png" srcset="undefined" class="">
+<p>可以看到我们这个简单的网络的准确度已经达到了95.55%，至此我们的手写数字识别网络就全部完成了，如果感兴趣的话可以调整隐藏层数量和尺寸或者使用上节的SGD算法替代Adam看看训练结果有什么变化。</p>
+<h1 id="使用caffe2构建网络"><a class="markdownIt-Anchor" href="#使用caffe2构建网络"></a> 使用caffe2构建网络</h1>
+<p>在caffe2中构建手写数字识别网络要困难一些，首先我们需要自己导入适用于caffe2的MNIST数据集。caffe2官方已经提供了一个制作好的caffe2的MNIST数据集，可以点这里<a href="http://download.caffe2.ai/databases/mnist-lmdb.zip" target="_blank" rel="noopener">下载</a>，本例改编自<a href="https://caffe2.ai/docs/tutorial-MNIST.html" target="_blank" rel="noopener">官网教程</a>。</p>
+<p>caffe2的数据集通常使用lmdb或者leveldb存储，这是一种高效的嵌入式数据库。下载好后将数据集放在jupyter的根目录下，然后使用ModelHelper创建模型并导入数据。这里为了演示方便没有另外将网络定义写在函数中。实际使用时应该像官方说明中一样将不同功能的层定义在不同的函数中调用。</p>
+<pre><code>from caffe2.python import brew, core, model_helper, optimizer, workspace, net_drawer	
+train_model = model_helper.ModelHelper(&quot;train_model&quot;,arg_scope={&quot;order&quot;:&quot;NCHW&quot;}) #arg_scope是一个语法糖，在定义网络时arg_scope中的参数会自动传入层的定义中
+#这里的order是数据集中数据的顺序，即小批量中数据数量，通道，高和宽的顺序
+#TensorProtosDBInput操作符从指定的db位置读取数据库，db_type对应存储的lmdb格式。第一个参数可以传入一些数据库的reader，在这里我们不需要，而第二个参数代表这个操作符输出的变量列表
+features_uint8, labels = train_model.TensorProtosDBInput([],[&quot;features_uint8&quot;,&quot;labels&quot;],batch_size=50,db=&quot;mnist-lmdb/mnist-train-nchw-lmdb&quot;,db_type=&quot;lmdb&quot;)
+# 原始的MNIST数据是使用无符号8位整数(0~255)存储的，我们需要转成浮点数供神经网络学习
+features = train_model.Cast(features_uint8, &quot;features&quot;, to=core.DataType.FLOAT)
+#将数值范围从0~255转换为0~1
+features = train_model.Scale(features,features,scale=float(1/256))
+#无需反向传播
+features = train_model.StopGradient(features,features)
+</code></pre>
+<p>在读取了数据库后，我们就可以开始构建网络的计算部分了。</p>
+<pre><code>#输入层和隐藏层
+fc1 = brew.fc(train_model,features,&quot;fc1&quot;,dim_in = 28*28, dim_out = 256)
+#增加激活函数
+relu = brew.relu(train_model, fc1, &quot;relu&quot;)
+pred = brew.fc(train_model, relu, &quot;pred&quot;,256,10)
+#caffe2的交叉熵和softmax是分开的，所以我们需要在模型里加入softmax回归
+softmax = brew.softmax(train_model,relu,&quot;softmax&quot;)
+</code></pre>
+<p>接下来增加交叉熵函数</p>
+<pre><code>crossEntropy = train_model.LabelCrossEntropy([softmax,labels],&quot;crossEntropy&quot;)
+#由于caffe2的交叉熵操作符输出的是每一个预测值对应的损失，我们使用AveragedLoss操作符取平均值
+loss = train_model.AveragedLoss(crossEntropy, &quot;loss&quot;)
+</code></pre>
+<p>同样我们可以看一看到目前为止的运算图</p>
+<pre><code>from IPython import display
+graph = net_drawer.GetPydotGraph(train_model.Proto().op,&quot;train&quot;,rankdir=&quot;LR&quot;)
+display.Image(graph.create_png(),width=800)
+</code></pre>
+<img src="/2019/11/24/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%E7%BD%91%E7%BB%9C/caffe2_graph.png" srcset="undefined" class="">
+<p>在图上我们可以看到读取到的图像经过了多层感知机的几个运算符，并在交叉熵运算符处汇合。</p>
+<p>下面定义训练过程，我们同样使用Adam优化算法。</p>
+<pre><code>train_model.AddGradientOperators([loss])
+optimizer.build_adam(
+    train_model,
+    base_learning_rate=0.001,
+    policy=&quot;step&quot;,
+    stepsize=1,
+    gamma=0.999,
+)
+</code></pre>
+<p>最后进行训练。需要注意的是caffe2和pytorch不同，每一次迭代指的是基于一个小批量训练。由于我们每个小批量大小是50，10000次相当于对整个MNIST的训练集迭代10次（MNIST训练集数量为50000）。</p>
+<pre><code>workspace.RunNetOnce(train_model.param_init_net)
+workspace.CreateNet(train_model.net)
+total_iters = 10000
+loss = [0 for i in range(10000)]
+
+for i in range(total_iters):
+	workspace.RunNet(train_model.net.Proto().name)
+	loss[i] = workspace.FetchBlob('loss')
+loss
+</code></pre>
+<img src="/2019/11/24/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%E7%BD%91%E7%BB%9C/caffe2_final.png" srcset="undefined" class="">
+<img src="/2019/11/24/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%E7%BD%91%E7%BB%9C/caffe2_plot.png" srcset="undefined" class="">
+<p>最后我们对这个网络进行测试。测试方法是再构建一个只包含正向传播的一个测试网络，也就是将训练网络的反向传播部分去除。由于我们需要使用训练网络中的参数，测试网络就不需要再自己初始化参数了，因此ModelHelper的init_params参数设为False。</p>
+<pre><code>test_model = model_helper.ModelHelper(&quot;test_model&quot;,arg_scope={&quot;order&quot;:&quot;NCHW&quot;},init_params=False) 
+features_test_uint8, labels_test = test_model.TensorProtosDBInput([],[&quot;features_test_uint8&quot;,&quot;labels_test&quot;],batch_size=200,db=&quot;mnist-lmdb/mnist-test-nchw-lmdb&quot;,db_type=&quot;lmdb&quot;)
+features_test = test_model.Cast(features_test_uint8, &quot;features_test&quot;, to=core.DataType.FLOAT)
+features_test = test_model.Scale(features_test,features_test,scale=float(1/256))
+features_test = test_model.StopGradient(features_test,features_test)
+fc1 = brew.fc(test_model,features_test,&quot;fc1&quot;,dim_in = 28*28, dim_out = 256)
+relu = brew.relu(test_model, fc1, &quot;relu&quot;)
+pred = brew.fc(test_model, relu, &quot;pred&quot;,256,10)
+softmax = brew.softmax(test_model,relu,&quot;softmax&quot;)
+#使用caffe2的accuracy函数计算准确率
+accuracy = brew.accuracy(test_model, [softmax,labels_test],&quot;accuracy&quot;)
+</code></pre>
+<p>接下来运行这个测试用的网络并得到准确率</p>
+<pre><code>import numpy as np
+workspace.RunNetOnce(test_model.param_init_net)
+workspace.CreateNet(test_model.net)
+total_iters = 50
+accuracy = np.zeros(50)
+
+for i in range(total_iters):
+	workspace.RunNet(test_model.net)
+	accuracy[i] = workspace.FetchBlob(&quot;accuracy&quot;)
+plt.plot(accuracy)
+print(&quot;test accuracy:{}&quot;.format(accuracy.mean()))
+</code></pre>
+<img src="/2019/11/24/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%E7%BD%91%E7%BB%9C/caffe2_accuracy.png" srcset="undefined" class="">
+<p>至此，基于MNIST的手写数字识别网络就完成了。下一节我们将进一步了解更加复杂的网络结构，并使用一个新的数据集构建网络。</p>
+<hr class="footnotes-sep" />
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>简单来说，一张图的每个原色占有一个通道，所以一张以RGB存储的彩色照片就有代表R,G,B的三个通道。MNIST的图像为单色图像，因此只会有一个通道。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>仿射变换即如Ax+b这种对x进行A的线性变换后再根据b将x移动到向量空间中不同的位置。一次仿射变换等价于当前向量空间的更高维的线性变换。例如在二维欧氏平面上进行的仿射变换在三位欧氏空间中即为线性变换。 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">神经网络</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/pytorch">pytorch</a>
+                
+                  <a class="hover-with-bg" href="/tags/caffe2">caffe2</a>
+                
+                  <a class="hover-with-bg" href="/tags/DNN">DNN</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <div id="vcomments" style="width: 90%; margin: 0 auto;"></div>
+  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script>
+    var notify = 'false' === true;
+    var verify = 'true' === true;
+    var oldLoad = window.onload;
+    window.onload = function () {
+      new Valine({
+        el: '#vcomments',
+        notify: notify,
+        verify: verify,
+        app_id: "jY5stlz5eNHmsmr1p2wsi53q-MdYXbMMI",
+        app_key: "R0kCXXt8GsmjHF9Nug1fSRWp",
+        placeholder: "说点什么",
+        avatar: "retro",
+        meta: ['nick', 'mail', 'link'],
+        pageSize: "10",
+      });
+      oldLoad && oldLoad();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "pytorch&caffe2 深度学习的魔法 手写数字识别网络&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="/lib/katex/katex.min.css"  >
+  
+
+
+
+
+
+</body>
+</html>

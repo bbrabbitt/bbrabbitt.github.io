@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="Amatsukazedaze">
+  <meta name="keywords" content="">
+  <title>pytorch&amp;caffe2 深度学习的魔法 张量 ~ hanayuki</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>hanayuki</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/hanayuki.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期二, 十一月 19日 2019, 10:35 上午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.4k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      10 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <p>前面讲过，本质上神经网络是一个巨大的数学机器，而驱动这个数学机器的核心原理主要有三个：线性代数，概率论和微分。神经网络使用线性代数操作数据，使用自动求导修正自己的“认知”，最后根据概率论得出一个合理的结果。自动求导和求概率的问题框架都提供了强大的工具自动完成，而为神经网络准备合适的数据则是开发神经网络的重点问题。本节我们先来认识神经网络使用的基本数据结构——张量。</p>
+<h1 id="张量简介"><a class="markdownIt-Anchor" href="#张量简介"></a> 张量简介</h1>
+<p><em>简单起见，这节内容只会讲一些最基本的知识，并不是严格的数学理论和推导，下列定义在数学上不严谨或有误，但是不影响在神经网络中使用张量</em></p>
+<p>在计算机科学中，我们可以简单的把张量认为是一个可以无限扩张的容器，例如二维表就是一种张量，也就是说它有一个纵轴和横轴，例如：</p>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>年龄</th>
+<th>班级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>张三</td>
+<td>17</td>
+<td>高三1班</td>
+</tr>
+<tr>
+<td>李四</td>
+<td>19</td>
+<td>高三2班</td>
+</tr>
+</tbody>
+</table>
+<p>这张表可以被称作一个二维张量，实际有数据的尺寸是(2,3)，我们可以命名为（人数，详细信息）。虽然看上去是两行三列，但是张量可以通过操作转换行和列的关系，因此我们用一对数字表示它的尺寸。我们可以用坐标获取表中任意的数据，例如(1,2)代表了17。</p>
+<p>表非常有用，只需要一个索引就可以取出所有有关的数据（例如取第一行结果是(张三,17,高三一班)），但是如果我们需要存储两个学校的数据，那么用表就有些吃力。一种解决方式是将表变成(2,4)大小，然后学校单独存储，但是这样如果需要按学校处理数据就需要先找出所有同学校的人。需要注意的是张量并不是SQL或类似数据库的表，所有查询都是使用数字索引实现，因此找出属于同一个学校的数据会变的异常困难。更好的方法是将不同的学校分到不同的表里，然后将它们放入一个三维张量，这样就得到了一个大小为(2,2,3)的张量，我们也可以给这个张量的每个维度命名：（学校，人数，详细信息）。它可以想象成是一个由1x1x1的立方体组成的一个2x2x3的长方体，每一个立方体都代表一个值。不断增加张量的维度就可以容纳更多数据，并可以通过数字索引取得对应的值。</p>
+<h1 id="在python中表示张量"><a class="markdownIt-Anchor" href="#在python中表示张量"></a> 在python中表示张量</h1>
+<p>在python中有多种工具可以创建一个张量，首先我们使用numpy——老牌的科学计算包。numpy的功能很多，我们将只关注其中与张量有关的部分。</p>
+<p>首先使用熟悉的终端打开python，然后运行</p>
+<pre><code>&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; x=np.ones((2,3))
+&gt;&gt;&gt; x
+array([[1., 1., 1.],
+   [1., 1., 1.]])
+</code></pre>
+<p>numpy.ones函数创建一个张量（numpy中称为array，即数组，这篇文章中使用张量称呼它），然后将每一个值初始化为1。现在我们已经有了一个张量，我们看一看它的一些属性和方法。</p>
+<pre><code>&gt;&gt;&gt; x.shape
+(2,3)
+&gt;&gt;&gt; x.size
+6
+&gt;&gt;&gt; x.resize(10)
+&gt;&gt;&gt; x
+array([1., 1., 1., 1., 1., 1., 0., 0., 0., 0.])
+&gt;&gt;&gt; x.shape
+(1,10)
+&gt;&gt;&gt; x.reshape((2,5))
+array([[1., 1., 1., 1., 1.],
+   [1., 0., 0., 0., 0.]])
+</code></pre>
+<p>一个张量的shape代表它的形状，而size代表了它包含几个元素。因此resize会让张量变成一个一维张量（一般叫向量）并同时增加它包含的元素数量；而reshape不会改变元素数量，但是会改变形状。</p>
+<p>张量间也可以有一些运算，一般来说两个张量要大小一致才能计算，例如：</p>
+<pre><code>&gt;&gt;&gt; X = np.array([[1,5,2,6],[2,7,2,9]])#np.array函数可以使用python数组创建张量
+&gt;&gt;&gt; Y = np.array([[2,7,9,5],[1,8,4,6]])
+&gt;&gt;&gt; X+Y
+array([[ 3, 12, 11, 11],
+   [ 3, 15,  6, 15]])
+&gt;&gt;&gt; X-Y
+array([[-1, -2, -7,  1],
+   [ 1, -1, -2,  3]])
+&gt;&gt;&gt; X*Y
+array([[ 2, 35, 18, 30],
+   [ 2, 56,  8, 54]])
+&gt;&gt;&gt;X/Y
+array([[0.5       , 0.71428571, 0.22222222, 1.2       ],
+   [2.        , 0.875     , 0.5       , 1.5       ]])
+</code></pre>
+<p>使用加减乘除运算符可以对张量按元素计算，也就是对应位置上的元素会相加，相减，相乘或相除。</p>
+<p>numpy的张量（包括pytorch的张量）也支持形状不同的张量进行加减乘除运算，此时numpy会复制原有的值让张量的大小变得一致，这个机制叫做广播：</p>
+<pre><code>&gt;&gt;&gt; A = np.arange(3).reshape((3,1)) #arange函数会生成[0,1,2,3,4,5]这样的一维张量
+&gt;&gt;&gt; B = np.arange(4).reshape((1,4))
+&gt;&gt;&gt; A+B
+array([[0, 1, 2, 3],
+   [1, 2, 3, 4],
+   [2, 3, 4, 5]])
+</code></pre>
+<p>在这里A的第一列被复制了4遍，B的第一行被复制了三遍从而形成了两个(4,3)的张量，这时就可以进行加法运算了。</p>
+<p>除此之外还可以使用np.exp函数进行以e为底的指数函数运算，例如</p>
+<pre><code>&gt;&gt;&gt; np.exp(X)
+array([[2.71828183e+00, 1.48413159e+02, 7.38905610e+00, 4.03428793e+02],
+   [7.38905610e+00, 1.09663316e+03, 7.38905610e+00, 8.10308393e+03]])
+</code></pre>
+<p>之前讲过，张量可以用一些操作改变行和列的顺序，这个操作叫作转置，使用T表示</p>
+<pre><code>&gt;&gt;&gt; X.T
+&gt;&gt;&gt; array([[1, 2],
+   [5, 7],
+   [2, 2],
+   [6, 9]])
+</code></pre>
+<p>最后还要讲到一个张量的特有的运算：点乘。点乘是将一个张量的第一个或多个维度的数据和另一个张量的最后一个或多个维度的数据对应相乘并相加，这是一个比较难懂的概念，以二位张量为例，通常二位张量的第一个维度是行，最后一个维度是列，所以相乘过程如下图所示</p>
+<img src="/2019/11/19/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%BC%A0%E9%87%8F/dot.png" srcset="undefined" class="">
+<p>在numpy中如下操作</p>
+<pre><code>&gt;&gt;&gt; np.dot(X,Y.T)
+array([[ 85,  85],
+   [116, 120]])
+</code></pre>
+<p>原本X和Y均为(2,4)大小的张量，Y转置后变为(4,2)张量，第一列的值为[2,7,9,5]，X的第一行值为[1,5,2,6]，计算<code>1*2+5*7+2*9+5*6</code>得85。</p>
+<p>最后需要讲的是张量的索引。张量的索引与python的列表下标获取方式类似，都是从0开始，<code>:</code>可以用于切片，如下所示</p>
+<pre><code>&gt;&gt;&gt; X[1]
+array([2, 7, 2, 9])
+&gt;&gt;&gt; X[1,2]
+2
+&gt;&gt;&gt; X[1:]
+array([[2, 7, 2, 9]])
+</code></pre>
+<h1 id="pytorch中的张量"><a class="markdownIt-Anchor" href="#pytorch中的张量"></a> pytorch中的张量</h1>
+<p>由于numpy的巨大影响力，很多神经网络框架的python张量API都类似于numpy，caffe2直接使用numpy处理数据，直到开始构建神经网络时才会转成caffe2自己的张量格式，pytorch则是提供了与numpy类似的API，请直接看下面的演示。</p>
+<pre><code>&gt;&gt;&gt; import torch
+&gt;&gt;&gt; x = torch.ones((2,3))
+&gt;&gt;&gt; x
+tensor([[1., 1., 1.],
+    [1., 1., 1.]])
+&gt;&gt;&gt; x.shape
+torch.Size([2, 3])
+&gt;&gt;&gt; x.size()
+torch.Size([2, 3]) 
+#注意pytorch不会显示元素数量，因为神经网络并不关心张量中有几个元素
+&gt;&gt;&gt; x.reshape((1,6))
+tensor([[1., 1., 1., 1., 1., 1.]])
+&gt;&gt;&gt; x.resize(1,6)
+tensor([[1., 1., 1., 1., 1., 1.]]) 
+#同理resize和reshape功能一样，注意reshape接受元组而resize接受两个参数
+&gt;&gt;&gt; X = torch.tensor([[1,5,2,6],[2,7,2,9]])
+&gt;&gt;&gt; Y = torch.tensor([[2,7,9,5],[1,8,4,6]])
+&gt;&gt;&gt; X+Y
+tensor([[ 3, 12, 11, 11],
+    [ 3, 15,  6, 15]])
+&gt;&gt;&gt; X-Y
+tensor([[-1, -2, -7,  1],
+    [ 1, -1, -2,  3]])
+&gt;&gt;&gt; X*Y
+tensor([[ 2, 35, 18, 30],
+    [ 2, 56,  8, 54]])
+&gt;&gt;&gt; X/Y
+tensor([[0, 0, 0, 1],
+    [2, 0, 0, 1]]) #注意此处pytorch不会自动把整数转成浮点数
+    #因为pytorch的张量有固有的类型
+&gt;&gt;&gt; A = torch.arange(3).reshape((3,1))
+&gt;&gt;&gt; B = torch.arange(4).reshape((1,4))
+&gt;&gt;&gt; A+B
+tensor([[0, 1, 2, 3],
+    [1, 2, 3, 4],
+    [2, 3, 4, 5]])
+&gt;&gt;&gt; torch.exp(X)
+RuntimeError: exp_vml_cpu not implemented for 'Long'
+#torch.exp及大部分函数不支持LongTensor类型（即全部由整数构成的张量）
+#因此我们需要将X和Y转成FloatTensor
+#强制要求FloatTensor原因是神经网络参数均为浮点数，若使用LongTensor
+#神经网络的自由度将大大缩小，这也是以后需要注意的地方
+&gt;&gt;&gt; X = X.type(torch.FloatTensor)
+&gt;&gt;&gt; Y = Y.type(torch.FloatTensor)
+&gt;&gt;&gt; torch.exp(X)
+tensor([[2.7183e+00, 1.4841e+02, 7.3891e+00, 4.0343e+02],
+    [7.3891e+00, 1.0966e+03, 7.3891e+00, 8.1031e+03]])
+&gt;&gt;&gt; X.T
+tensor([[1., 2.],
+    [5., 7.],
+    [2., 2.],
+    [6., 9.]])
+#pytorch使用tensordot而不是dot对张量进行点乘，dims参数指定
+#有几个维度参与点乘（X从前往后第d个，Y从后往前第D个）
+#一般二维张量是1，三维张量是2
+#dims也可以使用两个list指定哪两个维度进行点乘
+&gt;&gt;&gt; torch.tensordot(X,Y.T,dims=1)
+tensor([[ 85.,  85.],
+    [116., 120.]])
+&gt;&gt;&gt; X[1]
+tensor([2., 7., 2., 9.])
+&gt;&gt;&gt; X[1,2]
+tensor(2.)
+&gt;&gt;&gt; X[1:]
+tensor([[2., 7., 2., 9.]])
+</code></pre>
+<p>到此，张量的基本操作就讲解的差不多了，接下来我们就要真正的开始使用框架构造我们的第一个神经网络——线性回归网络。</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">神经网络</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/pytorch">pytorch</a>
+                
+                  <a class="hover-with-bg" href="/tags/caffe2">caffe2</a>
+                
+                  <a class="hover-with-bg" href="/tags/%E5%9F%BA%E7%A1%80">基础</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <div id="vcomments" style="width: 90%; margin: 0 auto;"></div>
+  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script>
+    var notify = 'false' === true;
+    var verify = 'true' === true;
+    var oldLoad = window.onload;
+    window.onload = function () {
+      new Valine({
+        el: '#vcomments',
+        notify: notify,
+        verify: verify,
+        app_id: "jY5stlz5eNHmsmr1p2wsi53q-MdYXbMMI",
+        app_key: "R0kCXXt8GsmjHF9Nug1fSRWp",
+        placeholder: "说点什么",
+        avatar: "retro",
+        meta: ['nick', 'mail', 'link'],
+        pageSize: "10",
+      });
+      oldLoad && oldLoad();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "pytorch&caffe2 深度学习的魔法 张量&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="/lib/katex/katex.min.css"  >
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,529 @@
+<svg class="output" width="668pt" height="1091pt" xmlns="http://www.w3.org/2000/svg" style="animation-delay: 0s; animation-direction: normal; animation-duration: 0s; animation-fill-mode: none; animation-iteration-count: 1; animation-name: none; animation-play-state: running; animation-timing-function: ease; background-attachment: scroll; background-blend-mode: normal; background-clip: border-box; background-color: rgba(0, 0, 0, 0); background-image: none; background-origin: padding-box; background-position: 0% 0%; background-repeat: repeat; background-size: auto; border-bottom-color: rgb(0, 0, 0); border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; border-bottom-style: none; border-bottom-width: 0px; border-collapse: separate; border-image-outset: 0px; border-image-repeat: stretch; border-image-slice: 100%; border-image-source: none; border-image-width: 1; border-left-color: rgb(0, 0, 0); border-left-style: none; border-left-width: 0px; border-right-color: rgb(0, 0, 0); border-right-style: none; border-right-width: 0px; border-top-color: rgb(0, 0, 0); border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-style: none; border-top-width: 0px; bottom: auto; box-shadow: none; box-sizing: border-box; break-after: auto; break-before: auto; break-inside: auto; caption-side: top; clear: none; clip: auto; color: rgb(0, 0, 0); content: normal; cursor: auto; direction: ltr; display: inline; empty-cells: show; float: none; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-kerning: auto; font-optical-sizing: auto; font-size: 14px; font-stretch: 100%; font-style: normal; font-variant: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-east-asian: normal; font-weight: 400; height: 1454.66px; image-orientation: from-image; image-rendering: auto; isolation: auto; justify-items: normal; justify-self: auto; left: auto; letter-spacing: normal; line-height: 20px; list-style-image: none; list-style-position: outside; list-style-type: disc; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; max-height: none; max-width: 100%; min-height: 0px; min-width: 0px; mix-blend-mode: normal; object-fit: fill; object-position: 50% 50%; offset-distance: 0px; offset-path: none; offset-rotate: auto 0deg; opacity: 1; orphans: 2; outline-color: rgb(0, 0, 0); outline-offset: 0px; outline-style: none; outline-width: 0px; overflow-anchor: auto; overflow-wrap: normal; overflow-x: hidden; overflow-y: hidden; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; padding-top: 0px; pointer-events: auto; position: static; resize: none; right: auto; scroll-behavior: auto; speak: normal; table-layout: auto; tab-size: 8; text-align: start; text-align-last: auto; text-decoration: none solid rgb(0, 0, 0); text-decoration-line: none; text-decoration-style: solid; text-decoration-color: rgb(0, 0, 0); text-decoration-skip-ink: auto; text-underline-position: auto; text-indent: 0px; text-rendering: auto; text-shadow: none; text-size-adjust: 100%; text-overflow: clip; text-transform: none; top: auto; touch-action: auto; transition-delay: 0s; transition-duration: 0s; transition-property: all; transition-timing-function: ease; unicode-bidi: normal; vertical-align: baseline; visibility: visible; white-space: normal; widows: 2; width: 890.662px; will-change: auto; word-break: normal; word-spacing: 0px; z-index: auto; zoom: 1; -webkit-appearance: none; backface-visibility: visible; -webkit-border-horizontal-spacing: 0px; -webkit-border-image: none; -webkit-border-vertical-spacing: 0px; -webkit-box-align: stretch; -webkit-box-decoration-break: slice; -webkit-box-direction: normal; -webkit-box-flex: 0; -webkit-box-ordinal-group: 1; -webkit-box-orient: horizontal; -webkit-box-pack: start; -webkit-box-reflect: none; column-count: auto; column-gap: normal; column-rule-color: rgb(0, 0, 0); column-rule-style: none; column-rule-width: 0px; column-span: none; column-width: auto; backdrop-filter: none; align-content: normal; align-items: normal; align-self: auto; flex-basis: auto; flex-grow: 0; flex-shrink: 1; flex-direction: row; flex-wrap: nowrap; justify-content: normal; -webkit-font-smoothing: auto; grid-auto-columns: auto; grid-auto-flow: row; grid-auto-rows: auto; grid-column-end: auto; grid-column-start: auto; grid-template-areas: none; grid-template-columns: none; grid-template-rows: none; grid-row-end: auto; grid-row-start: auto; row-gap: normal; -webkit-highlight: none; hyphens: manual; -webkit-hyphenate-character: auto; -webkit-line-break: auto; -webkit-line-clamp: none; -webkit-locale: &quot;en-us&quot;; -webkit-mask-box-image: none; -webkit-mask-box-image-outset: 0px; -webkit-mask-box-image-repeat: stretch; -webkit-mask-box-image-slice: 0 fill; -webkit-mask-box-image-source: none; -webkit-mask-box-image-width: auto; -webkit-mask-clip: border-box; -webkit-mask-composite: source-over; -webkit-mask-image: none; -webkit-mask-origin: border-box; -webkit-mask-position: 0% 0%; -webkit-mask-repeat: repeat; -webkit-mask-size: auto; order: 0; perspective: none; perspective-origin: 445.325px 727.325px; -webkit-print-color-adjust: economy; -webkit-rtl-ordering: logical; shape-outside: none; shape-image-threshold: 0; shape-margin: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-text-combine: none; -webkit-text-decorations-in-effect: none; -webkit-text-emphasis-color: rgb(0, 0, 0); -webkit-text-emphasis-position: over right; -webkit-text-emphasis-style: none; -webkit-text-fill-color: rgb(0, 0, 0); -webkit-text-orientation: vertical-right; -webkit-text-security: none; -webkit-text-stroke-color: rgb(0, 0, 0); -webkit-text-stroke-width: 0px; transform: none; transform-origin: 445.331px 727.331px; transform-style: flat; -webkit-user-drag: auto; -webkit-user-modify: read-only; user-select: auto; -webkit-writing-mode: horizontal-tb; -webkit-app-region: none; buffered-rendering: auto; clip-path: none; clip-rule: nonzero; mask: none; filter: none; flood-color: rgb(0, 0, 0); flood-opacity: 1; lighting-color: rgb(255, 255, 255); stop-color: rgb(0, 0, 0); stop-opacity: 1; color-interpolation: srgb; color-interpolation-filters: linearrgb; color-rendering: auto; fill: rgb(0, 0, 0); fill-opacity: 1; fill-rule: nonzero; marker-end: none; marker-mid: none; marker-start: none; mask-type: luminance; shape-rendering: auto; stroke: none; stroke-dasharray: none; stroke-dashoffset: 0px; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-opacity: 1; stroke-width: 1px; alignment-baseline: auto; baseline-shift: 0px; dominant-baseline: auto; text-anchor: start; writing-mode: horizontal-tb; vector-effect: none; paint-order: normal; d: none; cx: 0px; cy: 0px; x: 0px; y: 0px; r: 0px; rx: auto; ry: auto; caret-color: rgb(0, 0, 0); line-break: auto;" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"><style  type="text/css">svg:not(:root) { overflow: hidden; }
+* { box-sizing: border-box; }
+div.output_area img, div.output_area svg { max-width: 100%; height: auto; }</style><svg class="output_area"><svg viewBox="0.00 0.00 668.25 1091.00" xmlns:xlink="http://www.w3.org/1999/xlink" style="width: 100%; height: 100%;">
+<g id="graph0" class="graph" transform="scale(0.637639 0.637639) rotate(0) translate(4 1707)">
+<title>%3</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-1707 1044,-1707 1044,4 -4,4"/>
+<!-- 2378893420808 -->
+<g id="node1" class="node"><title>2378893420808</title>
+<polygon fill="#caff70" stroke="black" points="913.5,-21 817.5,-21 817.5,-0 913.5,-0 913.5,-21"/>
+<text text-anchor="middle" x="865.5" y="-7.4" font-family="Times New Roman,serif" font-size="12.00">MeanBackward0</text>
+</g>
+<!-- 2378854382600 -->
+<g id="node2" class="node"><title>2378854382600</title>
+<polygon fill="lightgrey" stroke="black" points="916,-78 815,-78 815,-57 916,-57 916,-78"/>
+<text text-anchor="middle" x="865.5" y="-64.4" font-family="Times New Roman,serif" font-size="12.00">AddmmBackward</text>
+</g>
+<!-- 2378854382600&#45;&gt;2378893420808 -->
+<g id="edge1" class="edge"><title>2378854382600-&gt;2378893420808</title>
+<path fill="none" stroke="black" d="M865.5,-56.9197C865.5,-49.9083 865.5,-40.1442 865.5,-31.4652"/>
+<polygon fill="black" stroke="black" points="869,-31.3408 865.5,-21.3408 862,-31.3409 869,-31.3408"/>
+</g>
+<!-- 2378902352392 -->
+<g id="node3" class="node"><title>2378902352392</title>
+<polygon fill="lightblue" stroke="black" points="782.5,-148 714.5,-148 714.5,-114 782.5,-114 782.5,-148"/>
+<text text-anchor="middle" x="748.5" y="-134.4" font-family="Times New Roman,serif" font-size="12.00">linear3.bias</text>
+<text text-anchor="middle" x="748.5" y="-121.4" font-family="Times New Roman,serif" font-size="12.00"> (10)</text>
+</g>
+<!-- 2378902352392&#45;&gt;2378854382600 -->
+<g id="edge2" class="edge"><title>2378902352392-&gt;2378854382600</title>
+<path fill="none" stroke="black" d="M779.24,-113.842C797.521,-104.233 820.509,-92.149 838.156,-82.8729"/>
+<polygon fill="black" stroke="black" points="840.124,-85.7928 847.347,-78.0419 836.867,-79.5967 840.124,-85.7928"/>
+</g>
+<!-- 2378902353224 -->
+<g id="node4" class="node"><title>2378902353224</title>
+<polygon fill="lightgrey" stroke="black" points="930.5,-141.5 800.5,-141.5 800.5,-120.5 930.5,-120.5 930.5,-141.5"/>
+<text text-anchor="middle" x="865.5" y="-127.9" font-family="Times New Roman,serif" font-size="12.00">FusedDropoutBackward</text>
+</g>
+<!-- 2378902353224&#45;&gt;2378854382600 -->
+<g id="edge3" class="edge"><title>2378902353224-&gt;2378854382600</title>
+<path fill="none" stroke="black" d="M865.5,-120.391C865.5,-111.866 865.5,-99.1392 865.5,-88.4235"/>
+<polygon fill="black" stroke="black" points="869,-88.2448 865.5,-78.2449 862,-88.2449 869,-88.2448"/>
+</g>
+<!-- 2378902355528 -->
+<g id="node5" class="node"><title>2378902355528</title>
+<polygon fill="lightgrey" stroke="black" points="910.5,-211.5 820.5,-211.5 820.5,-190.5 910.5,-190.5 910.5,-211.5"/>
+<text text-anchor="middle" x="865.5" y="-197.9" font-family="Times New Roman,serif" font-size="12.00">ReluBackward0</text>
+</g>
+<!-- 2378902355528&#45;&gt;2378902353224 -->
+<g id="edge4" class="edge"><title>2378902355528-&gt;2378902353224</title>
+<path fill="none" stroke="black" d="M865.5,-190.257C865.5,-180.259 865.5,-164.422 865.5,-151.782"/>
+<polygon fill="black" stroke="black" points="869,-151.725 865.5,-141.725 862,-151.725 869,-151.725"/>
+</g>
+<!-- 2378902352904 -->
+<g id="node6" class="node"><title>2378902352904</title>
+<polygon fill="lightgrey" stroke="black" points="916,-275 815,-275 815,-254 916,-254 916,-275"/>
+<text text-anchor="middle" x="865.5" y="-261.4" font-family="Times New Roman,serif" font-size="12.00">AddmmBackward</text>
+</g>
+<!-- 2378902352904&#45;&gt;2378902355528 -->
+<g id="edge5" class="edge"><title>2378902352904-&gt;2378902355528</title>
+<path fill="none" stroke="black" d="M865.5,-253.891C865.5,-245.366 865.5,-232.639 865.5,-221.923"/>
+<polygon fill="black" stroke="black" points="869,-221.745 865.5,-211.745 862,-221.745 869,-221.745"/>
+</g>
+<!-- 2378902354184 -->
+<g id="node7" class="node"><title>2378902354184</title>
+<polygon fill="lightblue" stroke="black" points="782.5,-345 714.5,-345 714.5,-311 782.5,-311 782.5,-345"/>
+<text text-anchor="middle" x="748.5" y="-331.4" font-family="Times New Roman,serif" font-size="12.00">linear2.bias</text>
+<text text-anchor="middle" x="748.5" y="-318.4" font-family="Times New Roman,serif" font-size="12.00"> (4096)</text>
+</g>
+<!-- 2378902354184&#45;&gt;2378902352904 -->
+<g id="edge6" class="edge"><title>2378902354184-&gt;2378902352904</title>
+<path fill="none" stroke="black" d="M779.24,-310.842C797.521,-301.233 820.509,-289.149 838.156,-279.873"/>
+<polygon fill="black" stroke="black" points="840.124,-282.793 847.347,-275.042 836.867,-276.597 840.124,-282.793"/>
+</g>
+<!-- 2378902354056 -->
+<g id="node8" class="node"><title>2378902354056</title>
+<polygon fill="lightgrey" stroke="black" points="930.5,-338.5 800.5,-338.5 800.5,-317.5 930.5,-317.5 930.5,-338.5"/>
+<text text-anchor="middle" x="865.5" y="-324.9" font-family="Times New Roman,serif" font-size="12.00">FusedDropoutBackward</text>
+</g>
+<!-- 2378902354056&#45;&gt;2378902352904 -->
+<g id="edge7" class="edge"><title>2378902354056-&gt;2378902352904</title>
+<path fill="none" stroke="black" d="M865.5,-317.391C865.5,-308.866 865.5,-296.139 865.5,-285.423"/>
+<polygon fill="black" stroke="black" points="869,-285.245 865.5,-275.245 862,-285.245 869,-285.245"/>
+</g>
+<!-- 2378902355400 -->
+<g id="node9" class="node"><title>2378902355400</title>
+<polygon fill="lightgrey" stroke="black" points="910.5,-408.5 820.5,-408.5 820.5,-387.5 910.5,-387.5 910.5,-408.5"/>
+<text text-anchor="middle" x="865.5" y="-394.9" font-family="Times New Roman,serif" font-size="12.00">ReluBackward0</text>
+</g>
+<!-- 2378902355400&#45;&gt;2378902354056 -->
+<g id="edge8" class="edge"><title>2378902355400-&gt;2378902354056</title>
+<path fill="none" stroke="black" d="M865.5,-387.257C865.5,-377.259 865.5,-361.422 865.5,-348.782"/>
+<polygon fill="black" stroke="black" points="869,-348.725 865.5,-338.725 862,-348.725 869,-348.725"/>
+</g>
+<!-- 2378902352456 -->
+<g id="node10" class="node"><title>2378902352456</title>
+<polygon fill="lightgrey" stroke="black" points="916,-472 815,-472 815,-451 916,-451 916,-472"/>
+<text text-anchor="middle" x="865.5" y="-458.4" font-family="Times New Roman,serif" font-size="12.00">AddmmBackward</text>
+</g>
+<!-- 2378902352456&#45;&gt;2378902355400 -->
+<g id="edge9" class="edge"><title>2378902352456-&gt;2378902355400</title>
+<path fill="none" stroke="black" d="M865.5,-450.891C865.5,-442.366 865.5,-429.639 865.5,-418.923"/>
+<polygon fill="black" stroke="black" points="869,-418.745 865.5,-408.745 862,-418.745 869,-418.745"/>
+</g>
+<!-- 2378902353160 -->
+<g id="node11" class="node"><title>2378902353160</title>
+<polygon fill="lightblue" stroke="black" points="803.5,-542 735.5,-542 735.5,-508 803.5,-508 803.5,-542"/>
+<text text-anchor="middle" x="769.5" y="-528.4" font-family="Times New Roman,serif" font-size="12.00">linear1.bias</text>
+<text text-anchor="middle" x="769.5" y="-515.4" font-family="Times New Roman,serif" font-size="12.00"> (4096)</text>
+</g>
+<!-- 2378902353160&#45;&gt;2378902352456 -->
+<g id="edge10" class="edge"><title>2378902353160-&gt;2378902352456</title>
+<path fill="none" stroke="black" d="M794.723,-507.842C809.306,-498.5 827.54,-486.818 841.848,-477.652"/>
+<polygon fill="black" stroke="black" points="844.073,-480.383 850.605,-472.042 840.297,-474.489 844.073,-480.383"/>
+</g>
+<!-- 2378902354312 -->
+<g id="node12" class="node"><title>2378902354312</title>
+<polygon fill="lightgrey" stroke="black" points="909.5,-535.5 821.5,-535.5 821.5,-514.5 909.5,-514.5 909.5,-535.5"/>
+<text text-anchor="middle" x="865.5" y="-521.9" font-family="Times New Roman,serif" font-size="12.00">ViewBackward</text>
+</g>
+<!-- 2378902354312&#45;&gt;2378902352456 -->
+<g id="edge11" class="edge"><title>2378902354312-&gt;2378902352456</title>
+<path fill="none" stroke="black" d="M865.5,-514.391C865.5,-505.866 865.5,-493.139 865.5,-482.423"/>
+<polygon fill="black" stroke="black" points="869,-482.245 865.5,-472.245 862,-482.245 869,-482.245"/>
+</g>
+<!-- 2378902354824 -->
+<g id="node13" class="node"><title>2378902354824</title>
+<polygon fill="lightgrey" stroke="black" points="940.5,-605.5 766.5,-605.5 766.5,-584.5 940.5,-584.5 940.5,-605.5"/>
+<text text-anchor="middle" x="853.5" y="-591.9" font-family="Times New Roman,serif" font-size="12.00">MaxPool2DWithIndicesBackward</text>
+</g>
+<!-- 2378902354824&#45;&gt;2378902354312 -->
+<g id="edge12" class="edge"><title>2378902354824-&gt;2378902354312</title>
+<path fill="none" stroke="black" d="M855.219,-584.257C856.984,-574.259 859.778,-558.422 862.009,-545.782"/>
+<polygon fill="black" stroke="black" points="865.493,-546.181 863.784,-535.725 858.599,-544.964 865.493,-546.181"/>
+</g>
+<!-- 2378902355336 -->
+<g id="node14" class="node"><title>2378902355336</title>
+<polygon fill="lightgrey" stroke="black" points="898.5,-669 808.5,-669 808.5,-648 898.5,-648 898.5,-669"/>
+<text text-anchor="middle" x="853.5" y="-655.4" font-family="Times New Roman,serif" font-size="12.00">ReluBackward0</text>
+</g>
+<!-- 2378902355336&#45;&gt;2378902354824 -->
+<g id="edge13" class="edge"><title>2378902355336-&gt;2378902354824</title>
+<path fill="none" stroke="black" d="M853.5,-647.891C853.5,-639.366 853.5,-626.639 853.5,-615.923"/>
+<polygon fill="black" stroke="black" points="857,-615.745 853.5,-605.745 850,-615.745 857,-615.745"/>
+</g>
+<!-- 2378902355080 -->
+<g id="node15" class="node"><title>2378902355080</title>
+<polygon fill="lightgrey" stroke="black" points="898.5,-726 808.5,-726 808.5,-705 898.5,-705 898.5,-726"/>
+<text text-anchor="middle" x="853.5" y="-712.4" font-family="Times New Roman,serif" font-size="12.00">AddBackward0</text>
+</g>
+<!-- 2378902355080&#45;&gt;2378902355336 -->
+<g id="edge14" class="edge"><title>2378902355080-&gt;2378902355336</title>
+<path fill="none" stroke="black" d="M853.5,-704.92C853.5,-697.908 853.5,-688.144 853.5,-679.465"/>
+<polygon fill="black" stroke="black" points="857,-679.341 853.5,-669.341 850,-679.341 857,-679.341"/>
+</g>
+<!-- 2378902354952 -->
+<g id="node16" class="node"><title>2378902354952</title>
+<polygon fill="lightgrey" stroke="black" points="860,-783 711,-783 711,-762 860,-762 860,-783"/>
+<text text-anchor="middle" x="785.5" y="-769.4" font-family="Times New Roman,serif" font-size="12.00">CudnnConvolutionBackward</text>
+</g>
+<!-- 2378902354952&#45;&gt;2378902355080 -->
+<g id="edge15" class="edge"><title>2378902354952-&gt;2378902355080</title>
+<path fill="none" stroke="black" d="M797.345,-761.92C807.265,-753.896 821.644,-742.266 833.367,-732.784"/>
+<polygon fill="black" stroke="black" points="835.759,-735.351 841.333,-726.341 831.357,-729.908 835.759,-735.351"/>
+</g>
+<!-- 2378902353032 -->
+<g id="node17" class="node"><title>2378902353032</title>
+<polygon fill="lightgrey" stroke="black" points="740.5,-846.5 650.5,-846.5 650.5,-825.5 740.5,-825.5 740.5,-846.5"/>
+<text text-anchor="middle" x="695.5" y="-832.9" font-family="Times New Roman,serif" font-size="12.00">ReluBackward0</text>
+</g>
+<!-- 2378902353032&#45;&gt;2378902354952 -->
+<g id="edge16" class="edge"><title>2378902353032-&gt;2378902354952</title>
+<path fill="none" stroke="black" d="M709.563,-825.391C723.829,-815.642 746.135,-800.399 762.887,-788.952"/>
+<polygon fill="black" stroke="black" points="765.254,-791.574 771.536,-783.042 761.305,-785.794 765.254,-791.574"/>
+</g>
+<!-- 2378902353096 -->
+<g id="node18" class="node"><title>2378902353096</title>
+<polygon fill="lightgrey" stroke="black" points="740.5,-910 650.5,-910 650.5,-889 740.5,-889 740.5,-910"/>
+<text text-anchor="middle" x="695.5" y="-896.4" font-family="Times New Roman,serif" font-size="12.00">AddBackward0</text>
+</g>
+<!-- 2378902353096&#45;&gt;2378902353032 -->
+<g id="edge17" class="edge"><title>2378902353096-&gt;2378902353032</title>
+<path fill="none" stroke="black" d="M695.5,-888.891C695.5,-880.366 695.5,-867.639 695.5,-856.923"/>
+<polygon fill="black" stroke="black" points="699,-856.745 695.5,-846.745 692,-856.745 699,-856.745"/>
+</g>
+<!-- 2378902355656 -->
+<g id="node19" class="node"><title>2378902355656</title>
+<polygon fill="lightgrey" stroke="black" points="702,-967 553,-967 553,-946 702,-946 702,-967"/>
+<text text-anchor="middle" x="627.5" y="-953.4" font-family="Times New Roman,serif" font-size="12.00">CudnnConvolutionBackward</text>
+</g>
+<!-- 2378902355656&#45;&gt;2378902353096 -->
+<g id="edge18" class="edge"><title>2378902355656-&gt;2378902353096</title>
+<path fill="none" stroke="black" d="M639.345,-945.92C649.265,-937.896 663.644,-926.266 675.367,-916.784"/>
+<polygon fill="black" stroke="black" points="677.759,-919.351 683.333,-910.341 673.357,-913.908 677.759,-919.351"/>
+</g>
+<!-- 2378902354376 -->
+<g id="node20" class="node"><title>2378902354376</title>
+<polygon fill="lightgrey" stroke="black" points="582.5,-1030.5 492.5,-1030.5 492.5,-1009.5 582.5,-1009.5 582.5,-1030.5"/>
+<text text-anchor="middle" x="537.5" y="-1016.9" font-family="Times New Roman,serif" font-size="12.00">ReluBackward0</text>
+</g>
+<!-- 2378902354376&#45;&gt;2378902355656 -->
+<g id="edge19" class="edge"><title>2378902354376-&gt;2378902355656</title>
+<path fill="none" stroke="black" d="M551.563,-1009.39C565.829,-999.642 588.135,-984.399 604.887,-972.952"/>
+<polygon fill="black" stroke="black" points="607.254,-975.574 613.536,-967.042 603.305,-969.794 607.254,-975.574"/>
+</g>
+<!-- 2378902352328 -->
+<g id="node21" class="node"><title>2378902352328</title>
+<polygon fill="lightgrey" stroke="black" points="582.5,-1094 492.5,-1094 492.5,-1073 582.5,-1073 582.5,-1094"/>
+<text text-anchor="middle" x="537.5" y="-1080.4" font-family="Times New Roman,serif" font-size="12.00">AddBackward0</text>
+</g>
+<!-- 2378902352328&#45;&gt;2378902354376 -->
+<g id="edge20" class="edge"><title>2378902352328-&gt;2378902354376</title>
+<path fill="none" stroke="black" d="M537.5,-1072.89C537.5,-1064.37 537.5,-1051.64 537.5,-1040.92"/>
+<polygon fill="black" stroke="black" points="541,-1040.74 537.5,-1030.74 534,-1040.74 541,-1040.74"/>
+</g>
+<!-- 2378902352584 -->
+<g id="node22" class="node"><title>2378902352584</title>
+<polygon fill="lightgrey" stroke="black" points="544,-1151 395,-1151 395,-1130 544,-1130 544,-1151"/>
+<text text-anchor="middle" x="469.5" y="-1137.4" font-family="Times New Roman,serif" font-size="12.00">CudnnConvolutionBackward</text>
+</g>
+<!-- 2378902352584&#45;&gt;2378902352328 -->
+<g id="edge21" class="edge"><title>2378902352584-&gt;2378902352328</title>
+<path fill="none" stroke="black" d="M481.345,-1129.92C491.265,-1121.9 505.644,-1110.27 517.367,-1100.78"/>
+<polygon fill="black" stroke="black" points="519.759,-1103.35 525.333,-1094.34 515.357,-1097.91 519.759,-1103.35"/>
+</g>
+<!-- 2378902352520 -->
+<g id="node23" class="node"><title>2378902352520</title>
+<polygon fill="lightgrey" stroke="black" points="424.5,-1214.5 250.5,-1214.5 250.5,-1193.5 424.5,-1193.5 424.5,-1214.5"/>
+<text text-anchor="middle" x="337.5" y="-1200.9" font-family="Times New Roman,serif" font-size="12.00">MaxPool2DWithIndicesBackward</text>
+</g>
+<!-- 2378902352520&#45;&gt;2378902352584 -->
+<g id="edge22" class="edge"><title>2378902352520-&gt;2378902352584</title>
+<path fill="none" stroke="black" d="M358.125,-1193.39C380.017,-1183.19 414.819,-1166.98 439.693,-1155.39"/>
+<polygon fill="black" stroke="black" points="441.434,-1158.44 449.02,-1151.04 438.477,-1152.09 441.434,-1158.44"/>
+</g>
+<!-- 2378902355272 -->
+<g id="node24" class="node"><title>2378902355272</title>
+<polygon fill="lightgrey" stroke="black" points="382.5,-1278 292.5,-1278 292.5,-1257 382.5,-1257 382.5,-1278"/>
+<text text-anchor="middle" x="337.5" y="-1264.4" font-family="Times New Roman,serif" font-size="12.00">ReluBackward0</text>
+</g>
+<!-- 2378902355272&#45;&gt;2378902352520 -->
+<g id="edge23" class="edge"><title>2378902355272-&gt;2378902352520</title>
+<path fill="none" stroke="black" d="M337.5,-1256.89C337.5,-1248.37 337.5,-1235.64 337.5,-1224.92"/>
+<polygon fill="black" stroke="black" points="341,-1224.74 337.5,-1214.74 334,-1224.74 341,-1224.74"/>
+</g>
+<!-- 2378902353544 -->
+<g id="node25" class="node"><title>2378902353544</title>
+<polygon fill="lightgrey" stroke="black" points="382.5,-1335 292.5,-1335 292.5,-1314 382.5,-1314 382.5,-1335"/>
+<text text-anchor="middle" x="337.5" y="-1321.4" font-family="Times New Roman,serif" font-size="12.00">AddBackward0</text>
+</g>
+<!-- 2378902353544&#45;&gt;2378902355272 -->
+<g id="edge24" class="edge"><title>2378902353544-&gt;2378902355272</title>
+<path fill="none" stroke="black" d="M337.5,-1313.92C337.5,-1306.91 337.5,-1297.14 337.5,-1288.47"/>
+<polygon fill="black" stroke="black" points="341,-1288.34 337.5,-1278.34 334,-1288.34 341,-1288.34"/>
+</g>
+<!-- 2378902352776 -->
+<g id="node26" class="node"><title>2378902352776</title>
+<polygon fill="lightgrey" stroke="black" points="344,-1392 195,-1392 195,-1371 344,-1371 344,-1392"/>
+<text text-anchor="middle" x="269.5" y="-1378.4" font-family="Times New Roman,serif" font-size="12.00">CudnnConvolutionBackward</text>
+</g>
+<!-- 2378902352776&#45;&gt;2378902353544 -->
+<g id="edge25" class="edge"><title>2378902352776-&gt;2378902353544</title>
+<path fill="none" stroke="black" d="M281.345,-1370.92C291.265,-1362.9 305.644,-1351.27 317.367,-1341.78"/>
+<polygon fill="black" stroke="black" points="319.759,-1344.35 325.333,-1335.34 315.357,-1338.91 319.759,-1344.35"/>
+</g>
+<!-- 2378953234888 -->
+<g id="node27" class="node"><title>2378953234888</title>
+<polygon fill="lightgrey" stroke="black" points="229.5,-1455.5 55.5,-1455.5 55.5,-1434.5 229.5,-1434.5 229.5,-1455.5"/>
+<text text-anchor="middle" x="142.5" y="-1441.9" font-family="Times New Roman,serif" font-size="12.00">MaxPool2DWithIndicesBackward</text>
+</g>
+<!-- 2378953234888&#45;&gt;2378902352776 -->
+<g id="edge26" class="edge"><title>2378953234888-&gt;2378902352776</title>
+<path fill="none" stroke="black" d="M162.344,-1434.39C183.314,-1424.24 216.594,-1408.12 240.504,-1396.54"/>
+<polygon fill="black" stroke="black" points="242.321,-1399.55 249.796,-1392.04 239.27,-1393.25 242.321,-1399.55"/>
+</g>
+<!-- 2378953233416 -->
+<g id="node28" class="node"><title>2378953233416</title>
+<polygon fill="lightgrey" stroke="black" points="187.5,-1519 97.5,-1519 97.5,-1498 187.5,-1498 187.5,-1519"/>
+<text text-anchor="middle" x="142.5" y="-1505.4" font-family="Times New Roman,serif" font-size="12.00">ReluBackward0</text>
+</g>
+<!-- 2378953233416&#45;&gt;2378953234888 -->
+<g id="edge27" class="edge"><title>2378953233416-&gt;2378953234888</title>
+<path fill="none" stroke="black" d="M142.5,-1497.89C142.5,-1489.37 142.5,-1476.64 142.5,-1465.92"/>
+<polygon fill="black" stroke="black" points="146,-1465.74 142.5,-1455.74 139,-1465.74 146,-1465.74"/>
+</g>
+<!-- 2378953235016 -->
+<g id="node29" class="node"><title>2378953235016</title>
+<polygon fill="lightgrey" stroke="black" points="187.5,-1576 97.5,-1576 97.5,-1555 187.5,-1555 187.5,-1576"/>
+<text text-anchor="middle" x="142.5" y="-1562.4" font-family="Times New Roman,serif" font-size="12.00">AddBackward0</text>
+</g>
+<!-- 2378953235016&#45;&gt;2378953233416 -->
+<g id="edge28" class="edge"><title>2378953235016-&gt;2378953233416</title>
+<path fill="none" stroke="black" d="M142.5,-1554.92C142.5,-1547.91 142.5,-1538.14 142.5,-1529.47"/>
+<polygon fill="black" stroke="black" points="146,-1529.34 142.5,-1519.34 139,-1529.34 146,-1529.34"/>
+</g>
+<!-- 2378953235720 -->
+<g id="node30" class="node"><title>2378953235720</title>
+<polygon fill="lightgrey" stroke="black" points="149,-1633 0,-1633 0,-1612 149,-1612 149,-1633"/>
+<text text-anchor="middle" x="74.5" y="-1619.4" font-family="Times New Roman,serif" font-size="12.00">CudnnConvolutionBackward</text>
+</g>
+<!-- 2378953235720&#45;&gt;2378953235016 -->
+<g id="edge29" class="edge"><title>2378953235720-&gt;2378953235016</title>
+<path fill="none" stroke="black" d="M86.3447,-1611.92C96.2655,-1603.9 110.644,-1592.27 122.367,-1582.78"/>
+<polygon fill="black" stroke="black" points="124.759,-1585.35 130.333,-1576.34 120.357,-1579.91 124.759,-1585.35"/>
+</g>
+<!-- 2378953236232 -->
+<g id="node31" class="node"><title>2378953236232</title>
+<polygon fill="lightblue" stroke="black" points="118,-1703 31,-1703 31,-1669 118,-1669 118,-1703"/>
+<text text-anchor="middle" x="74.5" y="-1689.4" font-family="Times New Roman,serif" font-size="12.00">conv1.weight</text>
+<text text-anchor="middle" x="74.5" y="-1676.4" font-family="Times New Roman,serif" font-size="12.00"> (96, 3, 11, 11)</text>
+</g>
+<!-- 2378953236232&#45;&gt;2378953235720 -->
+<g id="edge30" class="edge"><title>2378953236232-&gt;2378953235720</title>
+<path fill="none" stroke="black" d="M74.5,-1668.84C74.5,-1661.01 74.5,-1651.54 74.5,-1643.28"/>
+<polygon fill="black" stroke="black" points="78.0001,-1643.04 74.5,-1633.04 71.0001,-1643.04 78.0001,-1643.04"/>
+</g>
+<!-- 2378953233864 -->
+<g id="node32" class="node"><title>2378953233864</title>
+<polygon fill="lightgrey" stroke="black" points="255.5,-1633 167.5,-1633 167.5,-1612 255.5,-1612 255.5,-1633"/>
+<text text-anchor="middle" x="211.5" y="-1619.4" font-family="Times New Roman,serif" font-size="12.00">ViewBackward</text>
+</g>
+<!-- 2378953233864&#45;&gt;2378953235016 -->
+<g id="edge31" class="edge"><title>2378953233864-&gt;2378953235016</title>
+<path fill="none" stroke="black" d="M199.481,-1611.92C189.414,-1603.9 174.825,-1592.27 162.929,-1582.78"/>
+<polygon fill="black" stroke="black" points="164.847,-1579.84 154.846,-1576.34 160.484,-1585.31 164.847,-1579.84"/>
+</g>
+<!-- 2378902353992 -->
+<g id="node33" class="node"><title>2378902353992</title>
+<polygon fill="lightblue" stroke="black" points="244,-1703 179,-1703 179,-1669 244,-1669 244,-1703"/>
+<text text-anchor="middle" x="211.5" y="-1689.4" font-family="Times New Roman,serif" font-size="12.00">conv1.bias</text>
+<text text-anchor="middle" x="211.5" y="-1676.4" font-family="Times New Roman,serif" font-size="12.00"> (96)</text>
+</g>
+<!-- 2378902353992&#45;&gt;2378953233864 -->
+<g id="edge32" class="edge"><title>2378902353992-&gt;2378953233864</title>
+<path fill="none" stroke="black" d="M211.5,-1668.84C211.5,-1661.01 211.5,-1651.54 211.5,-1643.28"/>
+<polygon fill="black" stroke="black" points="215,-1643.04 211.5,-1633.04 208,-1643.04 215,-1643.04"/>
+</g>
+<!-- 2378953232712 -->
+<g id="node34" class="node"><title>2378953232712</title>
+<polygon fill="lightblue" stroke="black" points="335,-1462 248,-1462 248,-1428 335,-1428 335,-1462"/>
+<text text-anchor="middle" x="291.5" y="-1448.4" font-family="Times New Roman,serif" font-size="12.00">conv2.weight</text>
+<text text-anchor="middle" x="291.5" y="-1435.4" font-family="Times New Roman,serif" font-size="12.00"> (256, 96, 5, 5)</text>
+</g>
+<!-- 2378953232712&#45;&gt;2378902352776 -->
+<g id="edge33" class="edge"><title>2378953232712-&gt;2378902352776</title>
+<path fill="none" stroke="black" d="M285.72,-1427.84C282.855,-1419.83 279.376,-1410.11 276.376,-1401.72"/>
+<polygon fill="black" stroke="black" points="279.577,-1400.28 272.913,-1392.04 272.986,-1402.64 279.577,-1400.28"/>
+</g>
+<!-- 2378902354760 -->
+<g id="node35" class="node"><title>2378902354760</title>
+<polygon fill="lightgrey" stroke="black" points="450.5,-1392 362.5,-1392 362.5,-1371 450.5,-1371 450.5,-1392"/>
+<text text-anchor="middle" x="406.5" y="-1378.4" font-family="Times New Roman,serif" font-size="12.00">ViewBackward</text>
+</g>
+<!-- 2378902354760&#45;&gt;2378902353544 -->
+<g id="edge34" class="edge"><title>2378902354760-&gt;2378902353544</title>
+<path fill="none" stroke="black" d="M394.481,-1370.92C384.414,-1362.9 369.825,-1351.27 357.929,-1341.78"/>
+<polygon fill="black" stroke="black" points="359.847,-1338.84 349.846,-1335.34 355.484,-1344.31 359.847,-1338.84"/>
+</g>
+<!-- 2378953234952 -->
+<g id="node36" class="node"><title>2378953234952</title>
+<polygon fill="lightblue" stroke="black" points="439,-1462 374,-1462 374,-1428 439,-1428 439,-1462"/>
+<text text-anchor="middle" x="406.5" y="-1448.4" font-family="Times New Roman,serif" font-size="12.00">conv2.bias</text>
+<text text-anchor="middle" x="406.5" y="-1435.4" font-family="Times New Roman,serif" font-size="12.00"> (256)</text>
+</g>
+<!-- 2378953234952&#45;&gt;2378902354760 -->
+<g id="edge35" class="edge"><title>2378953234952-&gt;2378902354760</title>
+<path fill="none" stroke="black" d="M406.5,-1427.84C406.5,-1420.01 406.5,-1410.54 406.5,-1402.28"/>
+<polygon fill="black" stroke="black" points="410,-1402.04 406.5,-1392.04 403,-1402.04 410,-1402.04"/>
+</g>
+<!-- 2378902355912 -->
+<g id="node37" class="node"><title>2378902355912</title>
+<polygon fill="lightblue" stroke="black" points="536,-1221 443,-1221 443,-1187 536,-1187 536,-1221"/>
+<text text-anchor="middle" x="489.5" y="-1207.4" font-family="Times New Roman,serif" font-size="12.00">conv3.weight</text>
+<text text-anchor="middle" x="489.5" y="-1194.4" font-family="Times New Roman,serif" font-size="12.00"> (384, 256, 3, 3)</text>
+</g>
+<!-- 2378902355912&#45;&gt;2378902352584 -->
+<g id="edge36" class="edge"><title>2378902355912-&gt;2378902352584</title>
+<path fill="none" stroke="black" d="M484.245,-1186.84C481.641,-1178.83 478.478,-1169.11 475.751,-1160.72"/>
+<polygon fill="black" stroke="black" points="479.024,-1159.47 472.603,-1151.04 472.367,-1161.63 479.024,-1159.47"/>
+</g>
+<!-- 2378902354120 -->
+<g id="node38" class="node"><title>2378902354120</title>
+<polygon fill="lightgrey" stroke="black" points="650.5,-1151 562.5,-1151 562.5,-1130 650.5,-1130 650.5,-1151"/>
+<text text-anchor="middle" x="606.5" y="-1137.4" font-family="Times New Roman,serif" font-size="12.00">ViewBackward</text>
+</g>
+<!-- 2378902354120&#45;&gt;2378902352328 -->
+<g id="edge37" class="edge"><title>2378902354120-&gt;2378902352328</title>
+<path fill="none" stroke="black" d="M594.481,-1129.92C584.414,-1121.9 569.825,-1110.27 557.929,-1100.78"/>
+<polygon fill="black" stroke="black" points="559.847,-1097.84 549.846,-1094.34 555.484,-1103.31 559.847,-1097.84"/>
+</g>
+<!-- 2378902352136 -->
+<g id="node39" class="node"><title>2378902352136</title>
+<polygon fill="lightblue" stroke="black" points="639,-1221 574,-1221 574,-1187 639,-1187 639,-1221"/>
+<text text-anchor="middle" x="606.5" y="-1207.4" font-family="Times New Roman,serif" font-size="12.00">conv3.bias</text>
+<text text-anchor="middle" x="606.5" y="-1194.4" font-family="Times New Roman,serif" font-size="12.00"> (384)</text>
+</g>
+<!-- 2378902352136&#45;&gt;2378902354120 -->
+<g id="edge38" class="edge"><title>2378902352136-&gt;2378902354120</title>
+<path fill="none" stroke="black" d="M606.5,-1186.84C606.5,-1179.01 606.5,-1169.54 606.5,-1161.28"/>
+<polygon fill="black" stroke="black" points="610,-1161.04 606.5,-1151.04 603,-1161.04 610,-1161.04"/>
+</g>
+<!-- 2378902353416 -->
+<g id="node40" class="node"><title>2378902353416</title>
+<polygon fill="lightblue" stroke="black" points="694,-1037 601,-1037 601,-1003 694,-1003 694,-1037"/>
+<text text-anchor="middle" x="647.5" y="-1023.4" font-family="Times New Roman,serif" font-size="12.00">conv4.weight</text>
+<text text-anchor="middle" x="647.5" y="-1010.4" font-family="Times New Roman,serif" font-size="12.00"> (384, 384, 3, 3)</text>
+</g>
+<!-- 2378902353416&#45;&gt;2378902355656 -->
+<g id="edge39" class="edge"><title>2378902353416-&gt;2378902355656</title>
+<path fill="none" stroke="black" d="M642.245,-1002.84C639.641,-994.834 636.478,-985.108 633.751,-976.72"/>
+<polygon fill="black" stroke="black" points="637.024,-975.469 630.603,-967.042 630.367,-977.634 637.024,-975.469"/>
+</g>
+<!-- 2378902352648 -->
+<g id="node41" class="node"><title>2378902352648</title>
+<polygon fill="lightgrey" stroke="black" points="808.5,-967 720.5,-967 720.5,-946 808.5,-946 808.5,-967"/>
+<text text-anchor="middle" x="764.5" y="-953.4" font-family="Times New Roman,serif" font-size="12.00">ViewBackward</text>
+</g>
+<!-- 2378902352648&#45;&gt;2378902353096 -->
+<g id="edge40" class="edge"><title>2378902352648-&gt;2378902353096</title>
+<path fill="none" stroke="black" d="M752.481,-945.92C742.414,-937.896 727.825,-926.266 715.929,-916.784"/>
+<polygon fill="black" stroke="black" points="717.847,-913.837 707.846,-910.341 713.484,-919.311 717.847,-913.837"/>
+</g>
+<!-- 2378902354888 -->
+<g id="node42" class="node"><title>2378902354888</title>
+<polygon fill="lightblue" stroke="black" points="797,-1037 732,-1037 732,-1003 797,-1003 797,-1037"/>
+<text text-anchor="middle" x="764.5" y="-1023.4" font-family="Times New Roman,serif" font-size="12.00">conv4.bias</text>
+<text text-anchor="middle" x="764.5" y="-1010.4" font-family="Times New Roman,serif" font-size="12.00"> (384)</text>
+</g>
+<!-- 2378902354888&#45;&gt;2378902352648 -->
+<g id="edge41" class="edge"><title>2378902354888-&gt;2378902352648</title>
+<path fill="none" stroke="black" d="M764.5,-1002.84C764.5,-995.012 764.5,-985.54 764.5,-977.282"/>
+<polygon fill="black" stroke="black" points="768,-977.042 764.5,-967.042 761,-977.042 768,-977.042"/>
+</g>
+<!-- 2378902355144 -->
+<g id="node43" class="node"><title>2378902355144</title>
+<polygon fill="lightblue" stroke="black" points="852,-853 759,-853 759,-819 852,-819 852,-853"/>
+<text text-anchor="middle" x="805.5" y="-839.4" font-family="Times New Roman,serif" font-size="12.00">conv5.weight</text>
+<text text-anchor="middle" x="805.5" y="-826.4" font-family="Times New Roman,serif" font-size="12.00"> (256, 384, 3, 3)</text>
+</g>
+<!-- 2378902355144&#45;&gt;2378902354952 -->
+<g id="edge42" class="edge"><title>2378902355144-&gt;2378902354952</title>
+<path fill="none" stroke="black" d="M800.245,-818.842C797.641,-810.834 794.478,-801.108 791.751,-792.72"/>
+<polygon fill="black" stroke="black" points="795.024,-791.469 788.603,-783.042 788.367,-793.634 795.024,-791.469"/>
+</g>
+<!-- 2378902354248 -->
+<g id="node44" class="node"><title>2378902354248</title>
+<polygon fill="lightgrey" stroke="black" points="966.5,-783 878.5,-783 878.5,-762 966.5,-762 966.5,-783"/>
+<text text-anchor="middle" x="922.5" y="-769.4" font-family="Times New Roman,serif" font-size="12.00">ViewBackward</text>
+</g>
+<!-- 2378902354248&#45;&gt;2378902355080 -->
+<g id="edge43" class="edge"><title>2378902354248-&gt;2378902355080</title>
+<path fill="none" stroke="black" d="M910.481,-761.92C900.414,-753.896 885.825,-742.266 873.929,-732.784"/>
+<polygon fill="black" stroke="black" points="875.847,-729.837 865.846,-726.341 871.484,-735.311 875.847,-729.837"/>
+</g>
+<!-- 2378902355592 -->
+<g id="node45" class="node"><title>2378902355592</title>
+<polygon fill="lightblue" stroke="black" points="955,-853 890,-853 890,-819 955,-819 955,-853"/>
+<text text-anchor="middle" x="922.5" y="-839.4" font-family="Times New Roman,serif" font-size="12.00">conv5.bias</text>
+<text text-anchor="middle" x="922.5" y="-826.4" font-family="Times New Roman,serif" font-size="12.00"> (256)</text>
+</g>
+<!-- 2378902355592&#45;&gt;2378902354248 -->
+<g id="edge44" class="edge"><title>2378902355592-&gt;2378902354248</title>
+<path fill="none" stroke="black" d="M922.5,-818.842C922.5,-811.012 922.5,-801.54 922.5,-793.282"/>
+<polygon fill="black" stroke="black" points="926,-793.042 922.5,-783.042 919,-793.042 926,-793.042"/>
+</g>
+<!-- 2378902352264 -->
+<g id="node46" class="node"><title>2378902352264</title>
+<polygon fill="lightgrey" stroke="black" points="1023,-535.5 952,-535.5 952,-514.5 1023,-514.5 1023,-535.5"/>
+<text text-anchor="middle" x="987.5" y="-521.9" font-family="Times New Roman,serif" font-size="12.00">TBackward</text>
+</g>
+<!-- 2378902352264&#45;&gt;2378902352456 -->
+<g id="edge45" class="edge"><title>2378902352264-&gt;2378902352456</title>
+<path fill="none" stroke="black" d="M968.438,-514.391C948.383,-504.281 916.607,-488.263 893.662,-476.696"/>
+<polygon fill="black" stroke="black" points="894.934,-473.418 884.429,-472.042 891.783,-479.669 894.934,-473.418"/>
+</g>
+<!-- 2378902355848 -->
+<g id="node47" class="node"><title>2378902355848</title>
+<polygon fill="lightblue" stroke="black" points="1040,-612 959,-612 959,-578 1040,-578 1040,-612"/>
+<text text-anchor="middle" x="999.5" y="-598.4" font-family="Times New Roman,serif" font-size="12.00">linear1.weight</text>
+<text text-anchor="middle" x="999.5" y="-585.4" font-family="Times New Roman,serif" font-size="12.00"> (4096, 6400)</text>
+</g>
+<!-- 2378902355848&#45;&gt;2378902352264 -->
+<g id="edge46" class="edge"><title>2378902355848-&gt;2378902352264</title>
+<path fill="none" stroke="black" d="M996.656,-577.885C994.966,-568.309 992.81,-556.088 991.014,-545.912"/>
+<polygon fill="black" stroke="black" points="994.431,-545.134 989.246,-535.895 987.537,-546.351 994.431,-545.134"/>
+</g>
+<!-- 2378902355784 -->
+<g id="node48" class="node"><title>2378902355784</title>
+<polygon fill="lightgrey" stroke="black" points="1020,-338.5 949,-338.5 949,-317.5 1020,-317.5 1020,-338.5"/>
+<text text-anchor="middle" x="984.5" y="-324.9" font-family="Times New Roman,serif" font-size="12.00">TBackward</text>
+</g>
+<!-- 2378902355784&#45;&gt;2378902352904 -->
+<g id="edge47" class="edge"><title>2378902355784-&gt;2378902352904</title>
+<path fill="none" stroke="black" d="M965.906,-317.391C946.345,-307.281 915.35,-291.263 892.969,-279.696"/>
+<polygon fill="black" stroke="black" points="894.454,-276.524 883.963,-275.042 891.24,-282.742 894.454,-276.524"/>
+</g>
+<!-- 2378902353608 -->
+<g id="node49" class="node"><title>2378902353608</title>
+<polygon fill="lightblue" stroke="black" points="1025,-415 944,-415 944,-381 1025,-381 1025,-415"/>
+<text text-anchor="middle" x="984.5" y="-401.4" font-family="Times New Roman,serif" font-size="12.00">linear2.weight</text>
+<text text-anchor="middle" x="984.5" y="-388.4" font-family="Times New Roman,serif" font-size="12.00"> (4096, 4096)</text>
+</g>
+<!-- 2378902353608&#45;&gt;2378902355784 -->
+<g id="edge48" class="edge"><title>2378902353608-&gt;2378902355784</title>
+<path fill="none" stroke="black" d="M984.5,-380.885C984.5,-371.309 984.5,-359.088 984.5,-348.912"/>
+<polygon fill="black" stroke="black" points="988,-348.895 984.5,-338.895 981,-348.895 988,-348.895"/>
+</g>
+<!-- 2378902352008 -->
+<g id="node50" class="node"><title>2378902352008</title>
+<polygon fill="lightgrey" stroke="black" points="1020,-141.5 949,-141.5 949,-120.5 1020,-120.5 1020,-141.5"/>
+<text text-anchor="middle" x="984.5" y="-127.9" font-family="Times New Roman,serif" font-size="12.00">TBackward</text>
+</g>
+<!-- 2378902352008&#45;&gt;2378854382600 -->
+<g id="edge49" class="edge"><title>2378902352008-&gt;2378854382600</title>
+<path fill="none" stroke="black" d="M965.906,-120.391C946.345,-110.281 915.35,-94.2628 892.969,-82.6962"/>
+<polygon fill="black" stroke="black" points="894.454,-79.5238 883.963,-78.0419 891.24,-85.7425 894.454,-79.5238"/>
+</g>
+<!-- 2378902353800 -->
+<g id="node51" class="node"><title>2378902353800</title>
+<polygon fill="lightblue" stroke="black" points="1024,-218 945,-218 945,-184 1024,-184 1024,-218"/>
+<text text-anchor="middle" x="984.5" y="-204.4" font-family="Times New Roman,serif" font-size="12.00">linear3.weight</text>
+<text text-anchor="middle" x="984.5" y="-191.4" font-family="Times New Roman,serif" font-size="12.00"> (10, 4096)</text>
+</g>
+<!-- 2378902353800&#45;&gt;2378902352008 -->
+<g id="edge50" class="edge"><title>2378902353800-&gt;2378902352008</title>
+<path fill="none" stroke="black" d="M984.5,-183.885C984.5,-174.309 984.5,-162.088 984.5,-151.912"/>
+<polygon fill="black" stroke="black" points="988,-151.895 984.5,-141.895 981,-151.895 988,-151.895"/>
+</g>
+</g>
+</svg></svg></svg>

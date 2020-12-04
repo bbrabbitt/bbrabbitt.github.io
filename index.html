@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="Amatsukazedaze">
+  <meta name="keywords" content="">
+  <title>hanayuki</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>hanayuki</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/hanayuki.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="fas fa-angle-down scroll-down-arrow"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5 z-depth-3" id="board">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/05/02/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E4%BD%BF%E7%94%A8CINIC-10%E8%AE%AD%E7%BB%83AlexNet/">
+        <p class="h4 index-header">pytorch&amp;caffe2~深度学习的魔法~使用CINIC-10训练更多网络</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">上一节我们学习了CNN的基本结构，但是LeNet-5在FashionMNIST数据集上表现也不是非常出色，对于现实生活中更加复杂的图片LeNet-5就更是力不从心了。因此人们提出了更多复杂的卷积神经网络。本节中我们介绍几个经典的设计，分别是进一步加深LeNet-5的AlexNet，串联多个小网络的NiN，和目前大量CNN的基础残差网络ResNet。由于这一节的网络更加强大，为了有区分度我们使用CINIC-10数据集训练。
+ CINIC-10数据集
+CINIC-10是一个CIFAR-10和Imagenet结合的数据集。CIFAR-10是MIT的TinyImages数据集的节选。TinyImages有着8000万张32*32的小图片。由于这个数据集过于庞大，多伦多大学的研究人员从中节选出了和MNIST类似，10个分类，60000张图片的小数据集CIFAR-10。而ImageNet则是另一个庞大的图像数据集，其中包含了超过1400万张的全尺寸图像，并且每一个图像都有对应的分类。由于这两个数据集都是收集了现实生活中的彩色照片，这些数据集相比于MNIST更具有实用性。ImageNet还曾举办CN</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-02&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">神经网络</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/pytorch">pytorch</a>&nbsp;
+          
+            <a href="/tags/caffe2">caffe2</a>&nbsp;
+          
+            <a href="/tags/CNN">CNN</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/20/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-CNN%E4%B8%8E%E5%9B%BE%E7%89%87%E5%88%86%E7%B1%BB%E7%BD%91%E7%BB%9C/">
+        <p class="h4 index-header">pytorch&amp;caffe2 深度学习的魔法 CNN与图片分类网络</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">尽管一个能够识别手写数字的神经网络是非常有趣，但它的使用范围非常有限：只能识别数字，输入的数字必须是28*28的单通道灰度图像，而且识别准确率也并不是很高。出现这样的问题一部分原因是多层感知机的参数过多。假如要识别一张500万像素的图片，那么就需要至少500万个神经元放在输入层，而每一个神经元都需要连接到隐藏层中的神经元，导致整个神经网络计算复杂度过高，且大量的参数使梯度下降十分难进行，神经网络几乎不能收敛。另一方面，输入层的尺寸固定导致神经网络的可扩展性有限。因此，为了识别尺寸更大的图片人们提出了一种新的网络结构：卷积神经网络(Convolutional Neural Network, CNN)。
+ 卷积神经网络
+卷积神经网络中的卷积卷积是一个数学分析的概念，而神经网络中的卷积则指的是一种更加简单的运算：互相关运算。卷积的本质由于涉及到高等数学的知识在此不做讨论，我们只需了解神经网络中它是用来做什么的以及如何运算。
+在卷积神经网络中有多种不同的层结构，最基本的包括包括卷积层，池化层和全连接层。这种网络结构是受猫的大脑结构的启发。猫的大脑在处理图像时会对图像进行加工，只提取出最重要的部</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-20&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">神经网络</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/pytorch">pytorch</a>&nbsp;
+          
+            <a href="/tags/caffe2">caffe2</a>&nbsp;
+          
+            <a href="/tags/CNN">CNN</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/24/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB%E7%BD%91%E7%BB%9C/">
+        <p class="h4 index-header">pytorch&amp;caffe2 深度学习的魔法 手写数字识别网络</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">本节我们将构建第一个有实际用处的网络：手写数字识别网络。这个网络使用了非常经典的MNIST数据集(Modified National Institute of Standards and Technology 经修改的美国国家标准与技术研究所数据集)进行训练（原始数据集介绍在此文件中描述，MNIST包含的是Special Database 1和Special Database 3，Special Database 1中包含的是高中生的手写数字，Special Database 3中包含的是美国人口调查局职员的手写数字）。这个数据集中包含了60000个尺寸为28*28的手写数字，由于它尺寸统一且适中，并且手写数字大部分都特征明显，因此很适合作为神经网络的第一个例子展示。
+ 神经网络数据集
+在上一个例子中我们使用线性函数自己生成了数据集，但大部分情况下数据集准备并没有这么简单，通常需要耗费大量时间和人力为数据添加标签然后给神经网络训练。好在现在有很多开源数据集供我们使用，因此在学习时我们通常可以忽略这一步，但如果要实际训练一个自己的网络，这通常是最困难的一步之一。
+不论是使用别人预先准备好</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-24&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">神经网络</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/pytorch">pytorch</a>&nbsp;
+          
+            <a href="/tags/caffe2">caffe2</a>&nbsp;
+          
+            <a href="/tags/DNN">DNN</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/21/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%BD%91%E7%BB%9C/">
+        <p class="h4 index-header">pytorch&amp;caffe2 深度学习的魔法 线性回归网络</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">从这节开始，我们就要正式接触神经网络了。在构造更加复杂的神经网络之前，我们从一个简单的例子开始——线性回归。只要初学过统计甚至使用过一些电子表格软件（如Excel）的人都知道，线性回归可以让计算机在数据点间找到一个规律，并通过一个线性函数表示出来。虽然简单，但这个神经网络已经包含了神经网络必须的要素。在构造网络前，我们先来分析线性回归的模型是什么样的。
+ 线性回归模型
+在最简单的线性回归中，我们需要找的是如下函数的参数
+y^=w1x+b1\widehat{y}=w_1x+b_1
+y​=w1​x+b1​
+其中w1w_1w1​被称作权重(weight)，b1b_1b1​被称作偏差(bias)，这两个值是神经网络的参数。另外两个变量xxx是这个模型的输入，y^\widehat{y}y​是这个模型的输出，即线性回归的预测值。为了能让网络得到正确的预测值，我们需要训练神经网络，即使用一系列已知的输入和输出的关系让神经网络自行找出正确的参数。这个过程通过神经网络反向传播完成。下面我们先简单熟悉一下什么是反向传播。具体的数学定义可以查看wikipedia介绍和经典的Learning represen</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-21&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">神经网络</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/pytorch">pytorch</a>&nbsp;
+          
+            <a href="/tags/caffe2">caffe2</a>&nbsp;
+          
+            <a href="/tags/%E5%9F%BA%E7%A1%80">基础</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/19/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%BC%A0%E9%87%8F/">
+        <p class="h4 index-header">pytorch&amp;caffe2 深度学习的魔法 张量</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">前面讲过，本质上神经网络是一个巨大的数学机器，而驱动这个数学机器的核心原理主要有三个：线性代数，概率论和微分。神经网络使用线性代数操作数据，使用自动求导修正自己的“认知”，最后根据概率论得出一个合理的结果。自动求导和求概率的问题框架都提供了强大的工具自动完成，而为神经网络准备合适的数据则是开发神经网络的重点问题。本节我们先来认识神经网络使用的基本数据结构——张量。
+ 张量简介
+简单起见，这节内容只会讲一些最基本的知识，并不是严格的数学理论和推导，下列定义在数学上不严谨或有误，但是不影响在神经网络中使用张量
+在计算机科学中，我们可以简单的把张量认为是一个可以无限扩张的容器，例如二维表就是一种张量，也就是说它有一个纵轴和横轴，例如：
+
+
+
+姓名
+年龄
+班级
+
+
+
+
+张三
+17
+高三1班
+
+
+李四
+19
+高三2班
+
+
+
+这张表可以被称作一个二维张量，实际有数据的尺寸是(2,3)，我们可以命名为（人数，详细信息）。虽然看上去是两行三列，但是张量可以通过操作转换行和列的关系，因此我们用一对数字表示它的尺寸。我们可以用坐标获取表中任意的数据，例如(1,2)代表了17。
+表非常有用，只需要一个索引就</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-19&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">神经网络</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/pytorch">pytorch</a>&nbsp;
+          
+            <a href="/tags/caffe2">caffe2</a>&nbsp;
+          
+            <a href="/tags/%E5%9F%BA%E7%A1%80">基础</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/18/pytorch-caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%AE%89%E8%A3%85pytorch/">
+        <p class="h4 index-header">pytorch&amp;caffe2 深度学习的魔法 安装pytorch</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">“工欲善其事，必先利其器”。在正式接触神经网络的种种用法前，首先要安装好pytorch和相关的运行环境。本系列中用到的语言均为python，并使用pytorch和caffe2的python API实作。可能有一些读者阅读本系列前系统中已经安装了一个或多个python环境，但是通常使用的python环境缺少一些科学计算所必须的运行库。为了省却自己安装库的麻烦，在这里我们使用anaconda或miniconda安装pytorch。
+ 安装anaconda/miniconda
+anadconda是一个专门为科学计算设计的python发行版，它自带180余个常用科学软件包的一个名叫conda的环境管理器。conda能够安装绝大部分python科学计算包，同时也具有管理python环境的功能。为了不让pytorch的一些包和日常开发用的其他模块包，我们最好使用conda新建一个干净的python环境并在里面安装pytorch。
+由于anaconda自带的很多包我们实际用不上，而且全部安装比较占用空间（大约有450MB），因此anaconda提供了另一个精简化的选择：miniconda。minic</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-18&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">神经网络</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/pytorch">pytorch</a>&nbsp;
+          
+            <a href="/tags/caffe2">caffe2</a>&nbsp;
+          
+            <a href="/tags/%E5%9F%BA%E7%A1%80">基础</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/16/pytorch&caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%89%8D%E8%A8%80/">
+        <p class="h4 index-header">pytorch&amp;caffe2 深度学习的魔法 前言</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">自计算机被发明以来，人们一直幻想着它有朝一日能有自己的思想，帮助人们完成各种任务。这种幻想的产物被称作人工智能（Artificial Intelligence）。为此一代又一代的计算机科学家投入了大量的时间和精力去研究人工智能：图灵提出了图灵测试对计算机的思考能力进行评定，到使用知识库和推理引擎的专家系统的诞生[1]，又有能让计算机自己学习的机器学习算法的诞生，直至今天我们有了强大的运算能力和完备的算法，我们终于可以一窥深度学习的奥秘。尽管深度学习离科学家所设想的“能思考的机器”还差的很远，但它已足以解决很多曾经计算机无法独自解决的问题。
+这个系列的主题是深度学习的魔法，深度学习是机器学习的一个分支，它基于人工神经网络（ANN）对数据进行学习并作出自己的推演。虽然神经网络和深度学习是最近五年才变得火热，它的历史其实非常悠久。今天的神经网络依然依赖于P. Werbos在1974年提出的反向传播算法，而第一个将它发扬光大的则是卷积网络之父——杨立昆（Yann LeCun）。他在1987年依据反向传播算法制作出了一个可以识别手写的邮政数字的网络，而他使用的MNIST数据集至今仍是神经网络的H</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-16&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">神经网络</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/pytorch">pytorch</a>&nbsp;
+          
+            <a href="/tags/caffe2">caffe2</a>&nbsp;
+          
+            <a href="/tags/%E5%89%8D%E8%A8%80">前言</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "花の雪が散りて 积もるは溶けぬ想&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="/lib/katex/katex.min.css"  >
+  
+
+
+
+
+
+</body>
+</html>

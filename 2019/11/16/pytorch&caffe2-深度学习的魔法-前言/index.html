@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="Amatsukazedaze">
+  <meta name="keywords" content="">
+  <title>pytorch&amp;caffe2 深度学习的魔法 前言 ~ hanayuki</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>hanayuki</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/hanayuki.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期六, 十一月 16日 2019, 10:48 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.4k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      4 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <p>自计算机被发明以来，人们一直幻想着它有朝一日能有自己的思想，帮助人们完成各种任务。这种幻想的产物被称作人工智能（Artificial Intelligence）。为此一代又一代的计算机科学家投入了大量的时间和精力去研究人工智能：图灵提出了<a href="https://zh.wikipedia.org/wiki/%E5%9B%BE%E7%81%B5%E6%B5%8B%E8%AF%95" target="_blank" rel="noopener">图灵测试</a>对计算机的思考能力进行评定，到使用知识库和推理引擎的专家系统的诞生<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>，又有能让计算机自己学习的机器学习算法的诞生，直至今天我们有了强大的运算能力和完备的算法，我们终于可以一窥深度学习的奥秘。尽管深度学习离科学家所设想的“能思考的机器”还差的很远，但它已足以解决很多曾经计算机无法独自解决的问题。</p>
+<p>这个系列的主题是深度学习的魔法，深度学习是机器学习的一个分支，它基于人工神经网络（ANN）对数据进行学习并作出自己的推演。虽然神经网络和深度学习是最近五年才变得火热，它的历史其实非常悠久。今天的神经网络依然依赖于P. Werbos在1974年提出的反向传播算法，而第一个将它发扬光大的则是卷积网络之父——杨立昆（Yann LeCun）。他在1987年依据反向传播算法制作出了一个可以识别手写的邮政数字的网络，而他使用的MNIST数据集至今仍是神经网络的Hello World级别的入门教材。</p>
+<p>机器学习顾名思义，是能够让计算机通过学习已有的知识去推理未知的事物的过程。从简单的垃圾邮件分类到复杂的AlphaGo，计算机都在通过学习解决实际问题。而正如上文所述，深度学习基于人工神经网络：一个模仿大脑结构的庞大的数学机器。它可以通过学习大量的数据扩充自己的知识储备，然后在未知的数据上得出自己的结论。下面这张图可以大致描述神经网络的工作过程。</p>
+<img src="/2019/11/16/pytorch&caffe2-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%AD%94%E6%B3%95-%E5%89%8D%E8%A8%80/lgconn.png" srcset="undefined" class="">
+<p>在近年的演化中，人们开发出各种网络结构和训练方法让神经网络能够高效率地学习的同时保持高正确率，神经网络框架的进步和支持神经网络训练的云平台的出现也让原本难以构造和训练的神经网络变得更加容易开发，使更多构想能够成为现实。</p>
+<h1 id="初识pytorch和caffe2"><a class="markdownIt-Anchor" href="#初识pytorch和caffe2"></a> 初识pytorch和caffe2</h1>
+<p>在神经网络高速发展的今天，各种各样构造神经网络的框架也涌现出来。这些框架极大的降低了构建和训练神经网络的门槛。这些框架将常用的神经网络的基本元件和操作使用C++编写，并开放API供脚本语言（通常是python）调用。这种方式使我们不需要关心底层具体的数学运算，只需要根据自己的需要组装神经网络并调用训练函数就能得到自己的神经网络模型。比较主流的神经网络框架有Google支持的tensorflow和它的API Keras，亚马逊支持的mxnet和它的API gluon，微软支持的CNTK和我们的主角————Facebook支持的pytorch和caffe2。</p>
+<p>pytorch和caffe2分别来自于两个元老级框架：torch和caffe。两者能力各有千秋：pytorch的编码风格更加容易被人们接受，也更容易开发和调试，但效率不如caffe2高；caffe2的编码风格更加晦涩，但是运行效率十分优秀。因此facebook在推出pytorch1.0时，合并了这两个框架，并推荐使用pytorch的API进行开发。为了让体现这两个框架的不同之处，在本系列文章中同一个范例将使用这两个框架分别编写，最后也会给出一个能够在这两个框架间共享同一个模型的方法。由于caffe2的API已经被弃用，这篇文章将主要说明更简单的pytorch写法，如对caffe2有兴趣可以对比查看。</p>
+<h1 id="这个系列会有什么"><a class="markdownIt-Anchor" href="#这个系列会有什么"></a> 这个系列会有什么</h1>
+<p>在这个系列中，我们会从神经网络的一些基础数学知识讲起，并逐步深入，涵盖以下内容</p>
+<ul>
+<li>安装并配置pytorch</li>
+<li>认识张量</li>
+<li>认识神经网络的不同学习方法</li>
+<li>构建一个识别MNIST的全连接网络</li>
+<li>认识计算机视觉和卷积神经网络</li>
+<li>认识自然语言处理和循环神经网络</li>
+<li>使用torchaudio处理音频</li>
+<li>认识生成对抗网络和它的作用</li>
+<li>认识自动编码解码器和其他无监督学习算法</li>
+<li>认识强化学习</li>
+<li>认识transformers——最新的神经网络训练技术</li>
+<li>怎样部署pytorch，并加快运行速度</li>
+<li>怎样在caffe2和pytorch间转换</li>
+</ul>
+<p>训练神经网络需要大量的时间和耐心的调试，因此不要急于求成，一步一步构建自己的神经网络吧。</p>
+<hr class="footnotes-sep" />
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>知识库是一个精心编写的“真理”数据库，推理引擎是根据知识库给出的真理进行推理的软件。如动物会动，猫是动物是两条真理，推理引擎据此可得出猫会动。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">神经网络</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/pytorch">pytorch</a>
+                
+                  <a class="hover-with-bg" href="/tags/caffe2">caffe2</a>
+                
+                  <a class="hover-with-bg" href="/tags/%E5%89%8D%E8%A8%80">前言</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <div id="vcomments" style="width: 90%; margin: 0 auto;"></div>
+  <script defer src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script>
+    var notify = 'false' === true;
+    var verify = 'true' === true;
+    var oldLoad = window.onload;
+    window.onload = function () {
+      new Valine({
+        el: '#vcomments',
+        notify: notify,
+        verify: verify,
+        app_id: "jY5stlz5eNHmsmr1p2wsi53q-MdYXbMMI",
+        app_key: "R0kCXXt8GsmjHF9Nug1fSRWp",
+        placeholder: "说点什么",
+        avatar: "retro",
+        meta: ['nick', 'mail', 'link'],
+        pageSize: "10",
+      });
+      oldLoad && oldLoad();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "pytorch&caffe2 深度学习的魔法 前言&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="/lib/katex/katex.min.css"  >
+  
+
+
+
+
+
+</body>
+</html>
